@@ -106,6 +106,19 @@ namespace MPAS.Models
             }
         }
 
+        public static int NextID
+        {
+            get
+            {
+                return nextID;
+            }
+
+            set
+            {
+                nextID = value;
+            }
+        }
+
         /*
          * Emails an alert to mentees about the scheduled activity
          */

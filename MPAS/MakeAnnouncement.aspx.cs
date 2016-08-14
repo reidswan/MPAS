@@ -79,13 +79,13 @@ namespace MPAS
             Groups_DropDown.Items.Add("General Announcement");
 
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            SqlCommand getUserComm = new SqlCommand("SELECT MAX(GroupNumber) FROM ProfileDetails ");
+            SqlCommand populateDropdownComm = new SqlCommand("SELECT MAX(GroupNumber) FROM ProfileDetails ");
             // set the parameters
-            getUserComm.Connection = conn;
+            populateDropdownComm.Connection = conn;
             conn.Open();
 
             using (conn)
-            using (var reader = getUserComm.ExecuteReader())
+            using (var reader = populateDropdownComm.ExecuteReader())
             {
                 if (reader.HasRows)
                 {
@@ -101,7 +101,46 @@ namespace MPAS
 
         protected void SubmitButton_Click(Object source, EventArgs args)
         {
+            Announcement created = new Announcement();
+            created.Title = Title_Textbox.Text;
+            created.Content = Content_Textbox.Text;
+            created.CreationDate = DateTime.Now;
+            created.MadeBy = currentUser;
+            created.Group = new MentorGroup();
+            if (currentUser is Administrator)
+            {
+                created.Group.Id = Groups_DropDown.SelectedIndex;
+            } else if (currentUser is Mentor)
+            {
+                created.Group.Id = (General_CheckBox.Checked) ? 0 : currentUser.GroupNumber;
+            }
 
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand newAnnouncementComm = new SqlCommand("INSERT INTO Announcements (Id, Title, Content, GroupNumber, MadeBy, Date) " + 
+                " values(@id, @title, @content,@groupNum, @maker, @created)");
+            //parameterization
+            newAnnouncementComm.Parameters.Add("@id", SqlDbType.Int);
+            newAnnouncementComm.Parameters.Add("@title", SqlDbType.VarChar);
+            newAnnouncementComm.Parameters.Add("@content", SqlDbType.VarChar);
+            newAnnouncementComm.Parameters.Add("@created", SqlDbType.DateTime);
+            newAnnouncementComm.Parameters.Add("@maker", SqlDbType.VarChar);
+            newAnnouncementComm.Parameters.Add("@groupNum", SqlDbType.Int);
+
+            // set the parameters
+            newAnnouncementComm.Parameters["@id"].Value = created.ID;
+            newAnnouncementComm.Parameters["@title"].Value = created.Title;
+            newAnnouncementComm.Parameters["@content"].Value = created.Content;
+            newAnnouncementComm.Parameters["@created"].Value = created.CreationDate;
+            newAnnouncementComm.Parameters["@maker"].Value = created.MadeBy.StudentNumber;
+            newAnnouncementComm.Parameters["@groupNum"].Value = created.Group.Id;
+
+            newAnnouncementComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            {
+                newAnnouncementComm.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -7,6 +7,9 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using MPAS.Logic;
+using MPAS.Models;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace MPAS
 {
@@ -20,6 +23,26 @@ namespace MPAS
 
             RoleActions roleActions = new RoleActions();
             roleActions.createAdmin();
+
+            InitializeFromDatabase();
+        }
+
+        void InitializeFromDatabase()
+        {
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand setupComm = new SqlCommand("SELECT MAX(Id) FROM Announcements");
+            setupComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = setupComm.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    GroupActivity.NextID = (reader.IsDBNull(0)) ? 0 : reader.GetInt32(0);
+                }
+            }
         }
     }
 }

