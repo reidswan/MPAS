@@ -40,7 +40,7 @@ namespace MPAS
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    GroupActivity.NextID = (reader.IsDBNull(0)) ? 0 : reader.GetInt32(0);
+                    Announcement.NextID = (reader.IsDBNull(0)) ? 0 : reader.GetInt32(0);
                 }
             }
         }

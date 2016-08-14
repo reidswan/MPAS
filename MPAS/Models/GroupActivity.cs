@@ -8,26 +8,12 @@ namespace MPAS.Models
 {
     public abstract class GroupActivity
     {
-        private static int nextID = 0;
         private string title;
         private bool status;
         private int id;
         private MentorGroup group;
         private User madeBy;
         private DateTime creationDate;
-
-        public int ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-            }
-        }
-
         public DateTime CreationDate
         {
             get
@@ -80,7 +66,7 @@ namespace MPAS.Models
             }
         }
 
-        public int Id
+        public int ID
         {
             get
             {
@@ -105,20 +91,7 @@ namespace MPAS.Models
                 title = value;
             }
         }
-
-        public static int NextID
-        {
-            get
-            {
-                return nextID;
-            }
-
-            set
-            {
-                nextID = value;
-            }
-        }
-
+        
         /*
          * Emails an alert to mentees about the scheduled activity
          */

@@ -10,9 +10,10 @@ namespace MPAS.Models
     public class Announcement : GroupActivity
     {
         string content;
+        static int nextID = 0;
         public Announcement()
         {
-
+            this.ID = ++nextID;
         }
 
         public Announcement (MentorGroup g, string title, string content)
@@ -32,6 +33,19 @@ namespace MPAS.Models
             set
             {
                 content = value;
+            }
+        }
+
+        public static int NextID
+        {
+            get
+            {
+                return nextID;
+            }
+
+            set
+            {
+                nextID = value;
             }
         }
 

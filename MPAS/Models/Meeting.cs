@@ -8,14 +8,15 @@ namespace MPAS.Models
 {
     public class Meeting : GroupActivity
     {
+        static int nextId = 0;
         DateTime startTime, endTime;
         string location;
         string agenda;
         Dictionary<string, AttendanceStatus> attendance;
-
         
         public Meeting(MentorGroup g, string title, string location, string agenda, DateTime startTime, DateTime endTime)
         {
+            this.ID = ++nextId;
             foreach(Mentee m in g.Mentees)
             {
                 attendance.Add(m.StudentNumber, AttendanceStatus.NO_DATA);
@@ -91,6 +92,18 @@ namespace MPAS.Models
             }
         }
 
+        public static int NextId
+        {
+            get
+            {
+                return nextId;
+            }
+
+            set
+            {
+                nextId = value;
+            }
+        }
     }
 
     public enum AttendanceStatus
