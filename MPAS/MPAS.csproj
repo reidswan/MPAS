@@ -189,6 +189,7 @@
     <Content Include="Admin\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\newLogo.png" />
+    <Content Include="Images\uctgreenmile.jpg" />
     <Content Include="MakeAnnouncement.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

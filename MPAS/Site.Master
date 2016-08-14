@@ -46,7 +46,7 @@
                 margin: 0;
                 margin-top: -15px;
             }
-            .navbar{
+            .navbar-header{
                 min-height: 50px;
                 max-height: 50px;
             }
