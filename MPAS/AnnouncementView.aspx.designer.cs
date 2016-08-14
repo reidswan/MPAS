@@ -7,7 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-
-public partial class AnnouncementView {
+namespace MPAS {
+    
+    
+    public partial class AnnouncementView {
+        
+        /// <summary>
+        /// AnnouncementTitle_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementTitle_Label;
+        
+        /// <summary>
+        /// AnnouncementGroup_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementGroup_Label;
+        
+        /// <summary>
+        /// AnnouncementDate_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementDate_Label;
+        
+        /// <summary>
+        /// Content_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Content_Label;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+    }
 }

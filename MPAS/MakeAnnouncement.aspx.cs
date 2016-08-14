@@ -141,6 +141,9 @@ namespace MPAS
             {
                 newAnnouncementComm.ExecuteNonQuery();
             }
+
+            // redirect to announcement list page
+            Response.Redirect("~/AnnouncementView.aspx?announcementID=" + created.ID);
         }
     }
 }

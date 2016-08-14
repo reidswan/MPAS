@@ -38,14 +38,36 @@
                 <a class="btn btn-default" href="AnnouncementList.aspx">View all &raquo;</a>
             </div>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
+        <div class="col-md-4 col-xs-12">
+            <h3>Upcoming Meetings <i><sup>example</sup></i></h3>
+            <div class="row">
+                <div class="col-md-7 col-xs-6">
+                    <h4>Location</h4>
+                </div>
+                <div class="col-md-5 col-xs-6">
+                    <h4>Time</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-xs-6">
+                    
+                </div>
+                <div class="col-md-5 col-xs-6">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-xs-6">
+
+                </div>
+                <div class="col-md-5 col-xs-6">
+
+                </div>
+            </div>
+            <hr />
+            <div class="col-offset-xs-2 col-xs-10">
+                <a class="btn btn-default" href="AnnouncementList.aspx">View all &raquo;</a>
+            </div>
         </div>
         <div class="col-md-4">
             <h2>Web Hosting</h2>

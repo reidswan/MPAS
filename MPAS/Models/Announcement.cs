@@ -16,11 +16,19 @@ namespace MPAS.Models
             this.ID = ++nextID;
         }
 
-        public Announcement (MentorGroup g, string title, string content)
+        public Announcement (MentorGroup g, string title, string content) : this()
         {
             base.Group = g;
             base.Title = title;
             this.content = content;
+        }
+        
+        /*
+         * Used to create an announcement class for an already existing announcement
+         */
+        public Announcement(int id)
+        {
+            this.ID = id;
         }
 
         public string Content

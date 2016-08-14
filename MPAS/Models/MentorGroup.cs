@@ -148,7 +148,13 @@ namespace MPAS.Models
             }
 
             throw new KeyNotFoundException("Activity with ID " + actID + " is not a member of group " + this.Id);
-        } 
-        
+        }
+
+        public override string ToString()
+        {
+            if (Id == 0) return "General";
+            else return "Group " + Id;
+        }
+
     }
 }

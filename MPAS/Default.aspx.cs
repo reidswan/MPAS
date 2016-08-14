@@ -11,7 +11,12 @@ namespace MPAS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // if user not logged in redirect to login page
+            if((System.Web.HttpContext.Current.User == null) ||
+                !System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
         }
     }
 }

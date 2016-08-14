@@ -172,8 +172,8 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\AddUser.aspx" />
     <Content Include="Admin\DeleteUser.aspx" />
-    <Content Include="AnnouncementView.aspx" />
     <Content Include="AnnouncementList.aspx" />
+    <Content Include="AnnouncementView.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-or.css" />
     <Content Include="Content\bootstrap-or.min.css" />
@@ -358,19 +358,19 @@
     <Compile Include="Admin\DeleteUser.aspx.designer.cs">
       <DependentUpon>DeleteUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AnnouncementView.aspx.cs">
-      <DependentUpon>AnnouncementView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AnnouncementView.aspx.designer.cs">
-      <DependentUpon>AnnouncementView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AnnouncementList.aspx.cs">
       <DependentUpon>AnnouncementList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AnnouncementList.aspx.designer.cs">
       <DependentUpon>AnnouncementList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AnnouncementView.aspx.cs">
+      <DependentUpon>AnnouncementView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnnouncementView.aspx.designer.cs">
+      <DependentUpon>AnnouncementView.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

@@ -42,7 +42,8 @@ namespace MPAS
                     TableRow row = new TableRow();
 
                     TableCell title = new TableCell();
-                    title.Text = "<h4 style='width:50%'>" + a.Title + "</h4>";
+                    title.Text = "<a href='AnnouncementView.aspx?announcementID=" + a.ID + "'>" + 
+                        "<h4 style='width:50%'>" + a.Title + "</h4></a>";
                     row.Controls.Add(title);
 
                     TableCell madeBy = new TableCell();
@@ -84,7 +85,7 @@ namespace MPAS
         {
             List<Announcement> announcements = new List<Announcement>();
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            SqlCommand titleComm = new SqlCommand("SELECT Title, MadeBy, Date, Content FROM Announcements WHERE GroupNumber='0' OR GroupNumber='" + groupNumber + "' ORDER BY Date");
+            SqlCommand titleComm = new SqlCommand("SELECT Id, Title, MadeBy, Date, Content FROM Announcements WHERE GroupNumber='0' OR GroupNumber='" + groupNumber + "' ORDER BY Date DESC");
             titleComm.Connection = conn;
             conn.Open();
 
@@ -95,11 +96,11 @@ namespace MPAS
                     reader.Read();
 
                     // create and populate the announcement
-                    Announcement a = new Announcement();
-                    a.Title = reader.GetString(0);
-                    a.MadeBy = GetUser(reader.GetString(1));
-                    a.CreationDate = reader.GetDateTime(2);
-                    a.Content = reader.GetString(3);
+                    Announcement a = new Announcement(reader.GetInt32(0)); 
+                    a.Title = reader.GetString(1);
+                    a.MadeBy = GetUser(reader.GetString(2));
+                    a.CreationDate = reader.GetDateTime(3);
+                    a.Content = reader.GetString(4);
                     announcements.Add(a);
                 }
 
