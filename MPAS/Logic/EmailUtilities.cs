@@ -8,6 +8,7 @@ namespace MPAS.Logic
 {
     public class EmailUtilities
     {
+        // send an email to the user's MyUct email address
         public static void Email(string emailAddress, string subject, string content)
         {
             try

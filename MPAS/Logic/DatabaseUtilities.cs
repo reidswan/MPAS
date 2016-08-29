@@ -18,10 +18,27 @@ namespace MPAS.Logic
 
         }
 
+        // executes an sql query to determine the highest group number stored in the database
         public static int GetHighestGroupNumber ()
         {
-            // TODO: implement
-            return 0;
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand getUserComm = new SqlCommand("SELECT MAX(GroupNumber)" +
+                " FROM ProfileDetails" );
+            getUserComm.Connection = conn;
+            conn.Open();
+
+            int groupNumber = 0;
+            using (conn)
+            using (var reader = getUserComm.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    // read the record
+                    reader.Read();
+                    groupNumber = reader.GetInt32(0);
+                }
+            }
+            return groupNumber;
         }
 
         // get the User object associated with the given student number
@@ -30,10 +47,7 @@ namespace MPAS.Logic
             User u = null;
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             SqlCommand getUserComm = new SqlCommand("SELECT StudentNumber, FirstName, Surname, DateOfBirth, Role, GroupNumber " +
-                " FROM ProfileDetails WHERE StudentNumber=@studentNumber");
-            // set the parameters
-            getUserComm.Parameters.Add("@studentNumber", SqlDbType.VarChar);
-            getUserComm.Parameters["@studentNumber"].Value = studentNumber;
+                " FROM ProfileDetails WHERE StudentNumber='" + studentNumber + "'");
             getUserComm.Connection = conn;
             conn.Open();
 
