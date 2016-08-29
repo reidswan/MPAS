@@ -47,6 +47,8 @@ namespace MPAS
                     row.Controls.Add(title);
 
                     TableCell madeBy = new TableCell();
+                    //a.MadeBy = new MPAS.Models.Mentor(currentUser.StudentNumber);
+                    //a.MadeBy = 
                     madeBy.Text = "<h5 style='width:25%'>" + a.MadeBy.FirstName + " " + a.MadeBy.Surname + "</h4>";
                     row.Controls.Add(madeBy);
 
@@ -114,10 +116,8 @@ namespace MPAS
             User u = null;
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             SqlCommand getUserComm = new SqlCommand("SELECT StudentNumber, FirstName, Surname, DateOfBirth, Role, GroupNumber " + 
-                " FROM ProfileDetails WHERE StudentNumber=@studentNumber");
+                " FROM ProfileDetails WHERE StudentNumber='" + studentNumber+"'");
             // set the parameters
-            getUserComm.Parameters.Add("@studentNumber", SqlDbType.VarChar);
-            getUserComm.Parameters["@studentNumber"].Value = studentNumber;
             getUserComm.Connection = conn;
             conn.Open();
 

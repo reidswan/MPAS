@@ -3,8 +3,8 @@
     <h3> Add User </h3>
     <hr />
     <asp:Label runat="server" ID="Warning"></asp:Label>
-    <div class="row">
-        <div class="container col-md-8">
+    <div class="row form-horizontal">
+        <div class="container col-md-8 col-xs-12">
             <div class="form-group">
                 <div class="col-md-4 col-xs-6">
                     <asp:Label runat="server" ID="FirstName_Label" >First Name:</asp:Label>

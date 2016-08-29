@@ -73,6 +73,10 @@ namespace MPAS
             {
                 adminLink.Visible = true;
             }
+            if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                announcementTab.Visible = true;
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
