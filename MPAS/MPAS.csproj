@@ -191,6 +191,7 @@
     <Content Include="Images\newLogo.png" />
     <Content Include="Images\uctgreenmile.jpg" />
     <Content Include="MakeAnnouncement.aspx" />
+    <Content Include="MakeMeeting.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -407,6 +408,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DatabaseUtilities.cs" />
     <Compile Include="Logic\EmailUtilities.cs" />
     <Compile Include="Logic\RoleActions.cs" />
     <Compile Include="MakeAnnouncement.aspx.cs">
@@ -415,6 +417,13 @@
     </Compile>
     <Compile Include="MakeAnnouncement.aspx.designer.cs">
       <DependentUpon>MakeAnnouncement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MakeMeeting.aspx.cs">
+      <DependentUpon>MakeMeeting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MakeMeeting.aspx.designer.cs">
+      <DependentUpon>MakeMeeting.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Announcement.cs" />

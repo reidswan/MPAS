@@ -76,7 +76,7 @@
                               </ul> 
                         </li>
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/AnnouncementList">Announcements</a></li>
+                        <li><a runat="server" visible="false" id="announcementTab" href="~/AnnouncementList">Announcements</a></li>
                         
                    </ul>
                     
