@@ -102,7 +102,7 @@ namespace MPAS.Logic
                     }
                     else
                     {
-                        u = new Mentor(studentNumber);
+                        u = new Mentor(studentNumber); 
                     }
                     // set the values in the object
                     u.FirstName = reader.GetString(1);
@@ -442,10 +442,10 @@ namespace MPAS.Logic
             SqlCommand chatroomComm = new SqlCommand("INSERT INTO Chatrooms (GroupNumber, Sender, Message, TimeStamp) " + 
                 "values(@groupNumber, @srcStudentNumber, @message, @sendTime)");
             // set the parameters
-            chatroomComm.Parameters.Add("groupNumber", SqlDbType.Int);
-            chatroomComm.Parameters.Add("srcStudentNumber", SqlDbType.VarChar);
-            chatroomComm.Parameters.Add("message", SqlDbType.VarChar);
-            chatroomComm.Parameters.Add("sendTime", SqlDbType.DateTime);
+            chatroomComm.Parameters.Add("@groupNumber", SqlDbType.Int);
+            chatroomComm.Parameters.Add("@srcStudentNumber", SqlDbType.VarChar);
+            chatroomComm.Parameters.Add("@message", SqlDbType.VarChar);
+            chatroomComm.Parameters.Add("@sendTime", SqlDbType.DateTime);
 
             chatroomComm.Parameters["@groupNumber"].Value = groupNumber;
             chatroomComm.Parameters["@srcStudentNumber"].Value = srcStudentNumber;

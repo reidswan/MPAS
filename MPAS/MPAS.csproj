@@ -470,6 +470,7 @@
     <Compile Include="Models\FeedbackQuestions.cs" />
     <Compile Include="Models\GroupActivity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IMessageReceiver.cs" />
     <Compile Include="Models\Inbox.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingReport.cs" />

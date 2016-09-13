@@ -6,10 +6,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MPAS.Models;
 using MPAS.Logic;
+using Microsoft.Ajax;
 
 namespace MPAS
 {
-    public partial class GroupChat : System.Web.UI.Page
+    public partial class GroupChat : System.Web.UI.Page, IMessageReceiver
     {
 
         User currentUser = null;
@@ -26,9 +27,10 @@ namespace MPAS
             {
                 currentUser = DatabaseUtilities.GetUser(this.User.Identity.Name);
             }
-
+            
             cr = ChatroomManager.GetChatroom(currentUser.GroupNumber);
-
+            // register this page with the Chatroom
+            cr.RegisterReceiver(this);
             // put all the messages in the chatroom on the page
             PopulateChatMessages();
         }
@@ -52,9 +54,29 @@ namespace MPAS
             }
         }
 
+        /*
+         * Send the contents of the message box to the chatroom
+         */
         protected void SendButtonClick(object sender, EventArgs e)
         {
+            ChatMessage newMsg = new ChatMessage(cr);
+            newMsg.Source = currentUser;
+            newMsg.MessageContent = MessageBox.Text;
+            newMsg.SendTime = DateTime.Now;
+            cr.Receive(newMsg);
+        }
 
+        // from the interface; receive a message sent to the chatroom
+        public void Receive(ChatMessage m)
+        {
+            ChatroomLabel.Text += "<div class='row'>\n";
+            // add the sender name and date
+            ChatroomLabel.Text += "<div class='col-xs-4 col-md-4'>\n";
+            ChatroomLabel.Text += $"<b>{m.Source.FirstName} {m.Source.Surname}</b> <small>({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
+            //add the message
+            ChatroomLabel.Text += "</div>\n<div class='col-xs-8 col-md-8'>";
+            ChatroomLabel.Text += $"{m.MessageContent}";
+            ChatroomLabel.Text += "</div>\n</div>\n";
         }
     }
 }

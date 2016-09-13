@@ -9,10 +9,14 @@ namespace MPAS.Models
     public abstract class MessageHandler
     {
         protected List<ChatMessage> messages;
-
-        public void Receive(ChatMessage m)
+        protected List<IMessageReceiver> receivers;
+        public virtual void Receive(ChatMessage m)
         {
             this.messages.Add(m);
+            foreach(IMessageReceiver rcvr in receivers)
+            {
+                rcvr.Receive(m);
+            }
         }
 
         public override string ToString()
@@ -33,6 +37,14 @@ namespace MPAS.Models
             }
 
             return s.ToString();
+        }
+
+        /* 
+         * Adds a webpage to receive new chat messages
+         */
+        public void RegisterReceiver(IMessageReceiver rcvr)
+        {
+            receivers.Add(rcvr);
         }
     }
 }
