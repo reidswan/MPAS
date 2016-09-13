@@ -5,15 +5,31 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
+using System.Data.SqlClient;
+using System.Data;
+
 namespace MPAS.Admin
 {
     public partial class DeleteUser : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            LoadUserTable();
         }
 
+
+        public void LoadUserTable() //Displaying the user table for reference.
+        {
+
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmdDataBase = new SqlCommand("SELECT * FROM ProfileDetails");
+            cmdDataBase.Connection = conn;
+            conn.Open();
+            SqlDataReader reader = cmdDataBase.ExecuteReader();
+            GridView1.DataSource = reader;
+            GridView1.DataBind();
+ 
+        }
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
             using (var _db = new MPAS.Models.ApplicationDbContext())
@@ -33,6 +49,8 @@ namespace MPAS.Admin
                     StatusLabel.ForeColor = System.Drawing.Color.Green;
 
                     StudentNumberDelete_TextBox.Text = "";
+                    //Reload the table when user is deleted
+                    LoadUserTable();
                 }
                 else
                 {
