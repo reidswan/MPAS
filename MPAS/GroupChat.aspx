@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Group Chat" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GroupChat.aspx.cs" Inherits="MPAS.Chatroom" %>
+﻿<%@ Page Title="Group Chat" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GroupChat.aspx.cs" Inherits="MPAS.GroupChat" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h3>Group Chatroom</h3>
     <div class="row">
@@ -24,7 +24,7 @@
                         <asp:TextBox class="form-control" runat="server" TextMode="MultiLine" ID="MessageBox" />
                     </div>
                     <div class="row">
-                        <asp:Button CssClass="button" runat="server" ID="SendButton" OnClick="SendButtonClick" Text="Send" />
+                        <asp:Button CssClass="button" runat="server" ID="SendButton"  Text="Send" OnClientClick="SendButtonClick" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

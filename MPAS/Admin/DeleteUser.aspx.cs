@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text.RegularExpressions;
-using MPAS.Logic;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MPAS.Admin
 {
@@ -13,26 +14,51 @@ namespace MPAS.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.User.IsInRole("Administrator"))
-            {
-                Response.Redirect("~/Error/AuthError.aspx?source=DeleteUser");
-            }
+            LoadUserTable();
         }
 
+
+        public void LoadUserTable() //Displaying the user table for reference.
+        {
+
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            SqlCommand cmdDataBase = new SqlCommand("SELECT * FROM ProfileDetails");
+            cmdDataBase.Connection = conn;
+            conn.Open();
+            SqlDataReader reader = cmdDataBase.ExecuteReader();
+            GridView1.DataSource = reader;
+            GridView1.DataBind();
+ 
+        }
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
-            if(DatabaseUtilities.DeleteUser(StudentNumberDelete_TextBox.Text)) { 
+            using (var _db = new MPAS.Models.ApplicationDbContext())
+            {
+                string studentNumber = StudentNumberDelete_TextBox.Text;
+                var myItem = (from c in _db.Users where c.UserName == studentNumber select c).FirstOrDefault();
+                if (myItem != null)
+                {
+                    _db.Users.Remove(myItem);
+                    _db.SaveChanges();
+
+                    _db.Database.ExecuteSqlCommand("DELETE FROM ProfileDetails WHERE StudentNumber=@p0", studentNumber);
+
+                    // indicate success
                     StatusLabel.Text = "User deleted";
                     StatusLabel.Visible = true;
                     StatusLabel.ForeColor = System.Drawing.Color.Green;
 
                     StudentNumberDelete_TextBox.Text = "";
-            } else
-            {
-                //indicate failure
-                StatusLabel.Text = "Unable to locate user";
-                StatusLabel.Visible = true;
-                StatusLabel.ForeColor = System.Drawing.Color.Red;
+                    //Reload the table when user is deleted
+                    LoadUserTable();
+                }
+                else
+                {
+                    //indicate failure
+                    StatusLabel.Text = "Unable to locate user";
+                    StatusLabel.Visible = true;
+                    StatusLabel.ForeColor = System.Drawing.Color.Red;
+                }
             }
 
         }
