@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-md-4 col-xs-12s">
-            <h3>Announcements <i><sup>example</sup></i></h3>
+            <h3>Announcements</h3>
             <div class="row">
                 <div class="col-md-7 col-xs-6">
                     <h4>Title</h4>
@@ -19,18 +19,18 @@
             </div>
             <div class="row">
                 <div class="col-md-7 col-xs-6">
-                    <a href="#">New resources in Drive</a>
+                    <asp:Label runat="server" ID="AnnouncementTitle1_Label"></asp:Label>
                 </div>
                 <div class="col-md-5 col-xs-6">
-                    12/08/2016
+                    <asp:Label runat="server" ID="AnnouncementDate1_Label"></asp:Label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-7 col-xs-6">
-                    <a href="#">Decide on next meeting date</a>
+                    <asp:Label runat="server" ID="AnnouncementTitle2_Label"></asp:Label>
                 </div>
                 <div class="col-md-5 col-xs-6">
-                    11/08/2016
+                    <asp:Label runat="server" ID="AnnouncementDate2_Label"></asp:Label>
                 </div>
             </div>
             <hr />
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="col-md-4 col-xs-12">
-            <h3>Upcoming Meetings <i><sup>example</sup></i></h3>
+            <h3>Upcoming Meetings</h3>
             <div class="row">
                 <div class="col-md-7 col-xs-6">
                     <h4>Location</h4>
@@ -50,18 +50,18 @@
             </div>
             <div class="row">
                 <div class="col-md-7 col-xs-6">
-                    
+                    <asp:Label runat="server" ID="MeetingLocation1_Label"></asp:Label>
                 </div>
                 <div class="col-md-5 col-xs-6">
-
+                    <asp:Label runat="server" ID="MeetingDate1_Label"></asp:Label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-7 col-xs-6">
-
+                    <asp:Label runat="server" ID="MeetingLocation2_Label"></asp:Label>
                 </div>
                 <div class="col-md-5 col-xs-6">
-
+                    <asp:Label runat="server" ID="MeetingDate2_Label"></asp:Label>
                 </div>
             </div>
             <hr />

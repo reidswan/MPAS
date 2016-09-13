@@ -79,8 +79,15 @@ namespace MPAS
             } else
             {
                 Status_Label.Visible = false;
+                // if the user is not an admin, take their group number, 
+                // else get the group selected by the admin
+                int selectedGroup = currentUser.GroupNumber;
+                {
+                    selectedGroup = Int32.Parse(Groups_DropDown.Items[Groups_DropDown.SelectedIndex].Text);
+                }
 
-                DatabaseUtilities.AddMeeting(Title_Textbox.Text, Agenda_Textbox.Text, startTime, endTime, currentUser.GroupNumber, currentUser.StudentNumber);
+                DatabaseUtilities.AddMeeting(Title_Textbox.Text, Location_Textbox.Text, Agenda_Textbox.Text,
+                    startTime, endTime, selectedGroup, currentUser.StudentNumber);
             }
         }
     }
