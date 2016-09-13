@@ -76,6 +76,7 @@ namespace MPAS
             if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 announcementTab.Visible = true;
+                meetingTab.Visible = true;
             }
         }
 

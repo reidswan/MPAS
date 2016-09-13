@@ -64,3 +64,7 @@ C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\bin\Microsoft.Owin.Securi
 C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\obj\Debug\MPAS.csprojResolveAssemblyReference.cache
 C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\obj\Debug\MPAS.dll
 C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\obj\Debug\MPAS.pdb
+C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Reid Swan\Documents\VS2015\Projects\MPAS\MPAS\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

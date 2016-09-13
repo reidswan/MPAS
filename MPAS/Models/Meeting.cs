@@ -21,6 +21,20 @@ namespace MPAS.Models
             {
                 attendance.Add(m.StudentNumber, AttendanceStatus.NO_DATA);
             }
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
+
+        public Meeting(int ID, MentorGroup g, string title, string location, string agenda, DateTime startTime, DateTime endTime)
+        {
+            this.ID = ID;
+            foreach (Mentee m in g.Mentees)
+            {
+                attendance.Add(m.StudentNumber, AttendanceStatus.NO_DATA);
+            }
+
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
 
         public void RecordAttendance(string stdNum, AttendanceStatus t)
@@ -102,6 +116,58 @@ namespace MPAS.Models
             set
             {
                 nextId = value;
+            }
+        }
+
+        public DateTime StartTime
+        {
+            get
+            {
+                return startTime;
+            }
+
+            set
+            {
+                startTime = value;
+            }
+        }
+
+        public DateTime EndTime
+        {
+            get
+            {
+                return endTime;
+            }
+
+            set
+            {
+                endTime = value;
+            }
+        }
+
+        public string Agenda
+        {
+            get
+            {
+                return agenda;
+            }
+
+            set
+            {
+                agenda = value;
+            }
+        }
+
+        public string Location
+        {
+            get
+            {
+                return location;
+            }
+
+            set
+            {
+                location = value;
             }
         }
     }

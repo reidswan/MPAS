@@ -7,6 +7,17 @@ namespace MPAS.Models
 {
     public class Mentor : User
     {
+        public static Mentor NULL = new Mentor()
+        {
+            DateOfBirth = DateTime.MinValue,
+            FirstName = "",
+            Surname = "",
+            StudentNumber = "STDNUM000",
+            GroupNumber = 0
+        };
+
+        private Mentor() { }
+
         public Mentor(string studentNumber)
         {
             base.StudentNumber = studentNumber;

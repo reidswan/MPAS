@@ -11,5 +11,77 @@ namespace MPAS {
     
     
     public partial class _Default {
+        
+        /// <summary>
+        /// AnnouncementTitle1_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementTitle1_Label;
+        
+        /// <summary>
+        /// AnnouncementDate1_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementDate1_Label;
+        
+        /// <summary>
+        /// AnnouncementTitle2_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementTitle2_Label;
+        
+        /// <summary>
+        /// AnnouncementDate2_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AnnouncementDate2_Label;
+        
+        /// <summary>
+        /// MeetingLocation1_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MeetingLocation1_Label;
+        
+        /// <summary>
+        /// MeetingDate1_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MeetingDate1_Label;
+        
+        /// <summary>
+        /// MeetingLocation2_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MeetingLocation2_Label;
+        
+        /// <summary>
+        /// MeetingDate2_Label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MeetingDate2_Label;
     }
 }

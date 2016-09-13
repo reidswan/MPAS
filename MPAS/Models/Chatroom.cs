@@ -16,6 +16,12 @@ namespace MPAS.Models
             base.messages = new List<ChatMessage>();
         }
 
-        
+        public List<ChatMessage> Messages
+        {
+            get
+            {
+                return base.messages;
+            }
+        }
     }
 }

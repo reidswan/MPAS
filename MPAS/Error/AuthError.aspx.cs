@@ -11,7 +11,9 @@ namespace MPAS.Error
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string source = Request.QueryString["source"];
+            if (source == null) source = "a protected page";
+            From_Label.Text = source;
         }
     }
 }

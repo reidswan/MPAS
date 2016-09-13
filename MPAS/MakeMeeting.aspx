@@ -15,6 +15,14 @@
             </div>
             <div class="form-group">
                 <div class="col-md-4 col-xs-6">
+                    <asp:Label runat="server" ID="Label5" >Location:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-6">
+                    <asp:TextBox placeholder="Eg. Jameson Hall" runat="server" ID="Location_Textbox" TextMode="SingleLine" CssClass="form-control"></asp:TextBox>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-xs-6">
                     <asp:Label runat="server" ID="Label1">Agenda:</asp:Label>
                 </div>
                 <div class="col-md-8 col-xs-6">
