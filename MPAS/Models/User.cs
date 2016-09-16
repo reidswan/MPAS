@@ -117,5 +117,13 @@ namespace MPAS.Models
                 groupNumber = value;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is User)) return false;
+
+            return ((User)obj).StudentNumber.Equals(this.StudentNumber);
+        }
     }
 }

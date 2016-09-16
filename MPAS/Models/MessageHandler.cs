@@ -8,9 +8,10 @@ namespace MPAS.Models
 {
     public abstract class MessageHandler
     {
-        protected List<ChatMessage> messages;
+        protected List<Message> messages;
         protected List<IMessageReceiver> receivers;
-        public virtual void Receive(ChatMessage m)
+
+        public virtual void Receive(Message m)
         {
             this.messages.Add(m);
             foreach(IMessageReceiver rcvr in receivers)

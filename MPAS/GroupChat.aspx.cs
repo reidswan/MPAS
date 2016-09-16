@@ -45,10 +45,10 @@ namespace MPAS
             {
                 ChatroomLabel.Text += "<div class='row'>\n";
                 // add the sender name and date
-                ChatroomLabel.Text += "<div class='col-xs-4 col-md-4'>\n";
-                ChatroomLabel.Text += $"<b>{m.Source.FirstName} {m.Source.Surname}</b> <small>({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
+                ChatroomLabel.Text += "<div class='col-xs-3 col-md-3'>\n";
+                ChatroomLabel.Text += $"<small><b>{m.Source.FirstName} {m.Source.Surname}</b> ({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
                 //add the message
-                ChatroomLabel.Text += "</div>\n<div class='col-xs-8 col-md-8'>";
+                ChatroomLabel.Text += "</div>\n<div class='col-xs-9 col-md-9'>";
                 ChatroomLabel.Text += $"{m.MessageContent}";
                 ChatroomLabel.Text += "</div>\n</div>\n";
             }
@@ -62,20 +62,22 @@ namespace MPAS
             ChatMessage newMsg = new ChatMessage(cr);
             newMsg.Source = currentUser;
             newMsg.MessageContent = MessageBox.Text;
+            MessageBox.Text = "";
             newMsg.SendTime = DateTime.Now;
             cr.Receive(newMsg);
         }
 
         // from the interface; receive a message sent to the chatroom
-        public void Receive(ChatMessage m)
+        public void Receive(Message m)
         {
+            ChatMessage cMsg = (ChatMessage)m;
             ChatroomLabel.Text += "<div class='row'>\n";
             // add the sender name and date
-            ChatroomLabel.Text += "<div class='col-xs-4 col-md-4'>\n";
-            ChatroomLabel.Text += $"<b>{m.Source.FirstName} {m.Source.Surname}</b> <small>({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
+            ChatroomLabel.Text += "<div class='col-xs-3 col-md-3'>\n";
+            ChatroomLabel.Text += $"<small><b>{m.Source.FirstName} {m.Source.Surname}</b> ({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
             //add the message
-            ChatroomLabel.Text += "</div>\n<div class='col-xs-8 col-md-8'>";
-            ChatroomLabel.Text += $"{m.MessageContent}";
+            ChatroomLabel.Text += "</div>\n<div class='col-xs-9 col-md-9'>";
+            ChatroomLabel.Text += $"{cMsg.MessageContent}";
             ChatroomLabel.Text += "</div>\n</div>\n";
         }
     }

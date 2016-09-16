@@ -10,6 +10,7 @@ namespace MPAS.Models
         string messageContent;
         User source;
         DateTime sendTime;
+        bool read;
 
         public string MessageContent
         {
@@ -47,6 +48,19 @@ namespace MPAS.Models
             set
             {
                 sendTime = value;
+            }
+        }
+
+        public bool Read
+        {
+            get
+            {
+                return read;
+            }
+
+            set
+            {
+                read = value;
             }
         }
 

@@ -123,7 +123,7 @@ namespace MPAS.Logic
             List<Meeting> meetings = new List<Meeting>();
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             SqlCommand getUserComm = new SqlCommand("SELECT Id, Title, Agenda, Location, StartTime, EndTime, MadeBy, GroupNumber " +
-                " FROM Meetings WHERE GroupNumber='" + groupNumber+ "' ORDER BY StartTime");
+                " FROM Meetings WHERE GroupNumber='" + groupNumber+ "' ORDER BY StartTime ASC");
             getUserComm.Connection = conn;
             conn.Open();
 
@@ -406,7 +406,7 @@ namespace MPAS.Logic
             // connection to execute sql command
             SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             // the command to be executed
-            SqlCommand chatroomComm = new SqlCommand("SELECT Sender, Message, TimeStamp FROM Chatrooms WHERE GroupNumber=@groupNumber ORDER BY TimeStamp DESC");
+            SqlCommand chatroomComm = new SqlCommand("SELECT Sender, Message, TimeStamp FROM Chatrooms WHERE GroupNumber=@groupNumber ORDER BY TimeStamp ASC");
             // set the parameters
             chatroomComm.Parameters.Add("@groupNumber", SqlDbType.Int);
             chatroomComm.Parameters["@groupNumber"].Value = groupNumber;
@@ -423,7 +423,7 @@ namespace MPAS.Logic
                     m.MessageContent = reader.GetString(1);
                     m.SendTime = reader.GetDateTime(2);
                     // add the message to the chat room
-                    cr.Receive(m);
+                    cr.AddMessage(m);
                 }
             }
 
@@ -459,6 +459,153 @@ namespace MPAS.Logic
                 chatroomComm.ExecuteNonQuery();
             }
 
+        }
+
+        /**
+         * Returns a list of Users that have sent messages to the user with the given student number
+         */
+        public static List<User> GetSendersToUser(string stdNum)
+        {
+            List<User> sendersToUser = new List<User>();
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand msgComm = new SqlCommand("SELECT DISTINCT Source FROM Messages WHERE Destination=@studentNumber");
+            // set the parameters
+            msgComm.Parameters.Add("@studentNumber", SqlDbType.VarChar);
+            msgComm.Parameters["@studentNumber"].Value = stdNum;
+            msgComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = msgComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    sendersToUser.Add(GetUser(reader.GetString(0)));
+                }
+            }
+
+
+            return sendersToUser;
+        }
+
+        /**
+         * Queries all messages directed at the user with the given student number and returns them
+         */
+        public static List<PrivateMessage> GetMessagesForUser(string username)
+        {
+            List<PrivateMessage> messages = new List<PrivateMessage>();
+
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand msgComm = new SqlCommand("SELECT Source, Destination, SendTime, MessageContent, IsRead FROM Messages WHERE Destination=@studentNumber ORDER BY SendTime ASC");
+            // set the parameters
+            msgComm.Parameters.Add("@studentNumber", SqlDbType.VarChar);
+            msgComm.Parameters["@studentNumber"].Value = username;
+            msgComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = msgComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    // create a message with the details of this row
+                    PrivateMessage m = new PrivateMessage();
+                    m.Source = GetUser(reader.GetString(0));
+                    m.Destination = GetUser(reader.GetString(1));
+                    m.SendTime = reader.GetDateTime(2);
+                    m.MessageContent = reader.GetString(3);
+                    m.Read = reader.IsDBNull(4) ? false : reader.GetBoolean(4);
+                    messages.Add(m);
+                }
+            }
+
+            return messages;
+        }
+
+        /**
+         * Returns a list of private messages between users with the given student numbers
+         */
+        public static List<PrivateMessage> GetMessagesBetweenUsers(string stdNum1, string stdNum2)
+        {
+            List<PrivateMessage> messages = new List<PrivateMessage>();
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand msgComm = new SqlCommand("SELECT Source, Destination, SendTime, MessageContent, IsRead FROM Messages " + 
+                "WHERE (Destination=@studentNumber1 AND Source=@studentNumber2) OR (Source=@studentNumber1 AND Destination=@studentNumber2) " +
+                "ORDER BY SendTime ASC");
+            // set the parameters
+            msgComm.Parameters.Add("@studentNumber1", SqlDbType.VarChar);
+            msgComm.Parameters.Add("@studentNumber2", SqlDbType.VarChar);
+            msgComm.Parameters["@studentNumber1"].Value = stdNum1;
+            msgComm.Parameters["@studentNumber2"].Value = stdNum2;
+            msgComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = msgComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    // create a message with the details of this row
+                    PrivateMessage m = new PrivateMessage();
+                    m.Source = GetUser(reader.GetString(0));
+                    m.Destination = GetUser(reader.GetString(1));
+                    m.SendTime = reader.GetDateTime(2);
+                    m.MessageContent = reader.GetString(3);
+                    m.Read = reader.IsDBNull(4) ? false : reader.GetBoolean(4);
+                    messages.Add(m);
+                }
+            }
+
+            return messages;
+        }
+
+        /**
+         * Use PrivateChatManager.GetChat instead
+         * returns a private chat room between the given users containing all previous messages 
+         */
+        public static PrivateChat GetPrivateChat(string stdNum1, string stdNum2)
+        {
+            PrivateChat pChat = new PrivateChat(GetUser(stdNum1), GetUser(stdNum2));
+            foreach(PrivateMessage m in GetMessagesBetweenUsers(stdNum1, stdNum2))
+            {
+                pChat.AddMessage(m);
+            }
+            return pChat;
+        }
+
+        /*
+         * Adds the sent chatroom message to the Chatrooms database
+         */
+        public static void SendPrivateMessage(string sourceStdNum, String destStdNum, String message, DateTime sendTime)
+        {
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand messagesComm = new SqlCommand("INSERT INTO Messages (Source, Destination, MessageContent, SendTime) " +
+                "values(@source, @dest, @message, @sendTime)");
+            // set the parameters
+            messagesComm.Parameters.Add("@source", SqlDbType.VarChar);
+            messagesComm.Parameters.Add("@dest", SqlDbType.VarChar);
+            messagesComm.Parameters.Add("@message", SqlDbType.VarChar);
+            messagesComm.Parameters.Add("@sendTime", SqlDbType.DateTime);
+
+            messagesComm.Parameters["@source"].Value = sourceStdNum;
+            messagesComm.Parameters["@dest"].Value = destStdNum;
+            messagesComm.Parameters["@message"].Value = message;
+            messagesComm.Parameters["@sendTime"].Value = sendTime;
+            messagesComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            {
+                messagesComm.ExecuteNonQuery();
+            }
         }
     }
 }

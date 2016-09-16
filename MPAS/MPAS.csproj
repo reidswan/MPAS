@@ -199,10 +199,12 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\newLogo.png" />
     <Content Include="Images\uctgreenmile.jpg" />
+    <Content Include="Inbox.aspx" />
     <Content Include="MakeAnnouncement.aspx" />
     <Content Include="MakeMeeting.aspx" />
     <Content Include="MeetingList.aspx" />
     <Content Include="MeetingView.aspx" />
+    <Content Include="MessageThread.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -428,10 +430,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Inbox.aspx.cs">
+      <DependentUpon>Inbox.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inbox.aspx.designer.cs">
+      <DependentUpon>Inbox.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Logic\ChatroomManager.cs" />
     <Compile Include="Logic\DatabaseUtilities.cs" />
     <Compile Include="Logic\EmailUtilities.cs" />
     <Compile Include="Logic\MentorGroupManager.cs" />
+    <Compile Include="Logic\PrivateChatManager.cs" />
     <Compile Include="Logic\RoleActions.cs" />
     <Compile Include="MakeAnnouncement.aspx.cs">
       <DependentUpon>MakeAnnouncement.aspx</DependentUpon>
@@ -461,17 +471,22 @@
     <Compile Include="MeetingView.aspx.designer.cs">
       <DependentUpon>MeetingView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MessageThread.aspx.cs">
+      <DependentUpon>MessageThread.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MessageThread.aspx.designer.cs">
+      <DependentUpon>MessageThread.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Chatroom.cs" />
-    <Compile Include="Models\DirectChat.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\FeedbackQuestions.cs" />
     <Compile Include="Models\GroupActivity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IMessageReceiver.cs" />
-    <Compile Include="Models\Inbox.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\MeetingReport.cs" />
     <Compile Include="Models\Mentee.cs" />
@@ -479,6 +494,8 @@
     <Compile Include="Models\MentorGroup.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageHandler.cs" />
+    <Compile Include="Models\PrivateChat.cs" />
+    <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

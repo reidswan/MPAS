@@ -77,6 +77,7 @@ namespace MPAS
             {
                 announcementTab.Visible = true;
                 meetingTab.Visible = true;
+                groupChatTab.Visible = true;
             }
         }
 

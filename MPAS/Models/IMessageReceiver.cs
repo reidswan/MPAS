@@ -8,6 +8,6 @@ namespace MPAS.Models
 {
     public interface IMessageReceiver
     {
-        void Receive(ChatMessage msg);
+        void Receive(Message msg);
     }
 }
