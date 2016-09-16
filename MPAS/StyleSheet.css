@@ -1,0 +1,134 @@
+﻿body {
+}
+
+
+
+.caption-style-1{
+list-style-type: none;
+margin: 0px;
+padding: 0px;
+border-radius: 50%
+		
+}
+
+.caption-style-1 li{
+float: left;
+padding: 0px;
+position: relative;
+overflow: hidden;
+
+}
+
+.caption-style-1 li:hover .caption{
+opacity: 1;
+
+}
+
+
+.caption-style-1 img{
+margin: 0px;
+padding: 0px;
+float: left;
+z-index: 4;
+border-radius: 50%
+}
+
+
+.caption-style-1 .caption{
+cursor: pointer;
+position: absolute;
+opacity: 0;
+-webkit-transition:all 0.45s ease-in-out;
+-moz-transition:all 0.45s ease-in-out;
+-o-transition:all 0.45s ease-in-out;
+-ms-transition:all 0.45s ease-in-out;
+transition:all 0.45s ease-in-out;
+
+}
+.caption-style-1 .blur{
+background-color: rgba(0,0,0,0.65);
+height: 200px;
+width: 200px;
+z-index: 5;
+position: absolute;
+border-radius: 50%
+}
+
+.caption-style-1 .caption-text h1{
+text-transform: uppercase;
+font-size: 18px;
+
+}
+.caption-style-1 .caption-text{ 
+z-index: 10;
+color: #fff;
+position: relative;
+width: 200px;
+height: 200px;
+text-align:center;
+
+
+}
+
+/*for overlay in picture menu*/
+.container-popup {
+    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 6;
+}
+
+.popup {
+    width: 70%;
+    height: 70%;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 100;
+    
+}
+/*for overlay in webcam */
+.container-popup-level-two {
+    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 12;
+}
+
+.popup-level-two {
+    width: 55%;
+    height: 55%;
+    background: #ffffff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 200;
+    
+}
+/*close button for the overlay*/
+.close-button
+{
+    color:black;  
+}
+.close-button-container
+{
+    position: absolute;
+    left:97%;
+    bottom:97%;
+}
+
