@@ -427,6 +427,7 @@ namespace MPAS.Logic
                 }
             }
 
+            conn.Close();
             return cr;
 
         }
@@ -458,7 +459,7 @@ namespace MPAS.Logic
             {
                 chatroomComm.ExecuteNonQuery();
             }
-
+            conn.Close();
         }
 
         /**
@@ -486,7 +487,7 @@ namespace MPAS.Logic
                 }
             }
 
-
+            conn.Close();
             return sendersToUser;
         }
 
@@ -523,6 +524,7 @@ namespace MPAS.Logic
                 }
             }
 
+            conn.Close();
             return messages;
         }
 
@@ -561,7 +563,7 @@ namespace MPAS.Logic
                     messages.Add(m);
                 }
             }
-
+            conn.Close();
             return messages;
         }
 
@@ -606,6 +608,237 @@ namespace MPAS.Logic
             {
                 messagesComm.ExecuteNonQuery();
             }
+            conn.Close();
         }
+
+        /**
+         * Returns a list of strings containing Name, Surname and Student Number of all users
+         */
+         public static List<string> GetAllUserStrings()
+        {
+            List<string> userStrings = new List<string>();
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand userComm = new SqlCommand("SELECT StudentNumber, FirstName, Surname FROM ProfileDetails");
+            userComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = userComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    userStrings.Add(reader.GetString(0) + " " + reader.GetString(1) + " " + reader.GetString(2));
+                }
+            }
+            conn.Close();
+
+            return userStrings;
+        }
+
+        /**
+         * Returns a List object containing the periods in which a user is free;
+         * this takes the form of a list of tuples of the form (day [0 to 4], period number [0,9])
+         */
+        public static List<Tuple<int, int>> GetFreePeriodsForUser(string studentNum)
+        {
+            List<Tuple<int, int>> freePeriods = new List<Tuple<int, int>>();
+
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand scheduleComm = new SqlCommand("SELECT Monday, Tuesday, Wednesday, Thursday, Friday FROM Schedule " +
+                "WHERE StudentNumber=@studentNumber");
+            // set the parameters
+            scheduleComm.Parameters.Add("@studentNumber", SqlDbType.VarChar);
+            scheduleComm.Parameters["@studentNumber"].Value = studentNum;
+            scheduleComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = scheduleComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string[] days = new string[5];
+                    for(int i = 0; i < 5; i++)
+                    {
+                        days[i] = reader.GetString(i);
+                        for(int j = 0; j < 10; j++)
+                        {
+                            if(days[i].Contains(""+j))
+                            {
+                                freePeriods.Add(new Tuple<int, int>(i, j));
+                            }
+                        }
+                    }
+                }
+            }
+            conn.Close();
+            return freePeriods;
+        }
+
+        /**
+         * Gets a list of the student numbers of all mentors
+         */
+         public static List<string> GetMentorStudentNumbers()
+        {
+            List<string> mentorStdNums = new List<string>();
+
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand stdNumComm = new SqlCommand("SELECT StudentNumber FROM ProfileDetails " +
+                "WHERE Role='1'");
+            stdNumComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = stdNumComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string s = reader.GetString(0);
+                    if (s != "01360406")
+                    {
+                        mentorStdNums.Add(reader.GetString(0));
+                    }
+                }
+            }
+            conn.Close();
+
+            return mentorStdNums;
+        }
+
+        /**
+         * Gets a list of the student numbers of all mentees
+         */
+        public static List<string> GetMenteeStudentNumbers()
+        {
+            List<string> menteeStdNums = new List<string>();
+
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand stdNumComm = new SqlCommand("SELECT StudentNumber FROM ProfileDetails " +
+                "WHERE Role='0'");
+            stdNumComm.Connection = conn;
+            conn.Open();
+
+            using (conn)
+            using (var reader = stdNumComm.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    menteeStdNums.Add(reader.GetString(0));
+                }
+            }
+            conn.Close();
+
+            return menteeStdNums;
+        }
+
+        /**
+         * Takes a completed Scheduler and uses the data to assign mentors and mentees to groups
+         */
+        public static void CreateGroups(Scheduler s)
+        {
+            // comm for creating a group
+            // connection to execute sql command
+            SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            // the command to be executed
+            SqlCommand createGroupComm = new SqlCommand("INSERT INTO Groups (GroupNumber, Mentor) " +
+                "values(@groupNumber, @mentor)");
+            // set the parameters
+            createGroupComm.Parameters.Add("@groupNumber", SqlDbType.Int);
+            createGroupComm.Parameters.Add("@mentor", SqlDbType.VarChar);
+            createGroupComm.Connection = conn;
+
+            // comm for setting a user's group number
+            SqlCommand setGroupComm = new SqlCommand("UPDATE ProfileDetails SET GroupNumber=@groupNumber WHERE StudentNumber=@studentNum");
+            setGroupComm.Parameters.Add("@groupNumber", SqlDbType.Int);
+            setGroupComm.Parameters.Add("@studentNum", SqlDbType.VarChar);
+            conn.Open();
+
+            int groupNum = 0;
+            for(int day = 0; day < 5; day++)
+            {
+                for (int period = 0; period < 10; period++)
+                {
+                    if (s.MentorsByPeriod[day, period] != null && s.MentorsByPeriod[day, period].Count > 0)
+                    {
+                        if (s.MentorsByPeriod[day, period].Count == 1)
+                        {
+                            groupNum++;
+                            createGroupComm.Parameters["@groupNumber"].Value = groupNum;
+                            createGroupComm.Parameters["@mentor"].Value = s.MentorsByPeriod[day, period][0].ID;
+                            using (conn)
+                            {
+                                createGroupComm.ExecuteNonQuery();
+                            }
+
+                            setGroupComm.Parameters["@groupNumber"].Value = groupNum;
+                            setGroupComm.Parameters["@studentNum"].Value = s.MentorsByPeriod[day, period][0].ID;
+                            using (conn)
+                            {
+                                setGroupComm.ExecuteNonQuery();
+                            }
+
+                            foreach (var mentee in s.MenteesByPeriod[day, period])
+                            {
+                                setGroupComm.Parameters["@groupNumber"].Value = groupNum;
+                                setGroupComm.Parameters["@studentNum"].Value = mentee.ID;
+                                using (conn)
+                                {
+                                    setGroupComm.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                    } else
+                    {
+                        int startGroupNum = groupNum;
+                        foreach(var mentor in s.MentorsByPeriod[day, period])
+                        {
+                            startGroupNum++;
+                            createGroupComm.Parameters["@groupNumber"].Value = groupNum;
+                            createGroupComm.Parameters["@mentor"].Value = mentor.ID;
+                            using (conn)
+                            {
+                                createGroupComm.ExecuteNonQuery();
+                            }
+
+                            setGroupComm.Parameters["@groupNumber"].Value = groupNum;
+                            setGroupComm.Parameters["@studentNum"].Value = mentor.ID;
+                            using (conn)
+                            {
+                                setGroupComm.ExecuteNonQuery();
+                            }
+                        }
+                        groupNum++;
+                        int count = 0;
+                        int max = (int)Math.Ceiling(s.MenteesByPeriod[day, period].Count / (double)s.MentorsByPeriod[day, period].Count);
+                        foreach(var mentee in s.MenteesByPeriod[day, period])
+                        {
+                            setGroupComm.Parameters["@groupNumber"].Value = groupNum;
+                            setGroupComm.Parameters["@studentNum"].Value = mentee.ID;
+                            using (conn)
+                            {
+                                setGroupComm.ExecuteNonQuery();
+                            }
+                            count++;
+                            if (count >= max)
+                            {
+                                count = 0;
+                                groupNum++;
+                            }
+                        }
+                    }
+                }
+            }
+
+            conn.Close();
+        }
+        
     }
 }

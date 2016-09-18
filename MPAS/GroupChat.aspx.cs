@@ -71,14 +71,20 @@ namespace MPAS
         public void Receive(Message m)
         {
             ChatMessage cMsg = (ChatMessage)m;
-            ChatroomLabel.Text += "<div class='row'>\n";
+            string labelUpdateText = "";
+            labelUpdateText += "<div class='row'>\n";
             // add the sender name and date
-            ChatroomLabel.Text += "<div class='col-xs-3 col-md-3'>\n";
-            ChatroomLabel.Text += $"<small><b>{m.Source.FirstName} {m.Source.Surname}</b> ({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
+            labelUpdateText += "<div class='col-xs-3 col-md-3'>\n";
+            labelUpdateText += $"<small><b>{m.Source.FirstName} {m.Source.Surname}</b> ({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
             //add the message
-            ChatroomLabel.Text += "</div>\n<div class='col-xs-9 col-md-9'>";
-            ChatroomLabel.Text += $"{cMsg.MessageContent}";
-            ChatroomLabel.Text += "</div>\n</div>\n";
+            labelUpdateText += "</div>\n<div class='col-xs-9 col-md-9'>";
+            labelUpdateText += $"{cMsg.MessageContent}";
+            labelUpdateText += "</div>\n</div>\n";
+
+            ChatroomLabel.Text += labelUpdateText;
         }
+
+        // exists to force page update
+        protected void ChatTimer_Tick(object sender, EventArgs e) { }
     }
 }

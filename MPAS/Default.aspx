@@ -69,8 +69,36 @@
                 <a class="btn btn-default" href="AnnouncementList.aspx">View all &raquo;</a>
             </div>
         </div>
-        <div class="col-md-4">
-            
+        <div class="col-md-4 col-xs-12">
+            <h3>Recent Messages</h3>
+            <div class="row">
+                <div class="col-md-8 col-xs-6">
+                    <h4>Name</h4>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <h4>Sender</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-6">
+                    <asp:Label runat="server" ID="MessageContent1"></asp:Label>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <asp:Label runat="server" ID="MessageSender1"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-6">
+                    <asp:Label runat="server" ID="MessageContent2"></asp:Label>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <asp:Label runat="server" ID="MessageSender2"></asp:Label>
+                </div>
+            </div>
+            <hr />
+            <div class="col-offset-xs-2 col-xs-10">
+                <a class="btn btn-default" href="GroupChat.aspx">View all &raquo;</a>
+            </div>
         </div>
     </div>
 

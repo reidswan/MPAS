@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xs-8"><h3>Inbox</h3></div>
             <div class="col-xs-4">
-                <a runat="server" id="MakeAnnouncementButton"  class="btn btn-default" style="margin-top:5%" href="NewMessage">
+                <a runat="server" id="NewMessageButton"  class="btn btn-default" style="margin-top:5%" href="NewMessage">
                     New Message
                 </a>
             </div>

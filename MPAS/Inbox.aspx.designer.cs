@@ -13,13 +13,13 @@ namespace MPAS {
     public partial class Inbox {
         
         /// <summary>
-        /// MakeAnnouncementButton control.
+        /// NewMessageButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor MakeAnnouncementButton;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor NewMessageButton;
         
         /// <summary>
         /// NoMessages control.

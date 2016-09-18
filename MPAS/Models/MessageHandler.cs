@@ -14,9 +14,12 @@ namespace MPAS.Models
         public virtual void Receive(Message m)
         {
             this.messages.Add(m);
-            foreach(IMessageReceiver rcvr in receivers)
+            lock (receivers)
             {
-                rcvr.Receive(m);
+                foreach (IMessageReceiver rcvr in receivers)
+                {
+                    rcvr.Receive(m);
+                }
             }
         }
 

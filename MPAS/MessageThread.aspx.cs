@@ -80,7 +80,9 @@ namespace MPAS
         public void Receive(Message msg)
         {
             PrivateMessage m = (PrivateMessage)msg;
-            MessageThreadLabel.Text += "<div class='row'>\n";
+            string align = "left";
+            if (m.Source.StudentNumber.Equals(currentUser.StudentNumber)) align = "right";
+            MessageThreadLabel.Text += "<div class='row' style='text-align:" + align + "'>\n";
             // add the sender name and date
             MessageThreadLabel.Text += "<div class='col-xs-3 col-md-3'>\n";
             MessageThreadLabel.Text += $"<small><b>{m.Source.FirstName} {m.Source.Surname}</b> ({m.SendTime.ToShortTimeString()}, {m.SendTime.ToShortDateString()}):</small>";
@@ -89,5 +91,8 @@ namespace MPAS
             MessageThreadLabel.Text += $"{m.MessageContent}";
             MessageThreadLabel.Text += "</div>\n</div>\n";
         }
+
+        // exists to force partial page update
+        protected void ChatTimer_Tick(object sender, EventArgs e) { }
     }
 }

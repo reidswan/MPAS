@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MPAS.Models;
+using System.Threading;
 
 namespace MPAS.Logic
 {
     public class PrivateChatManager
     {
         private static Dictionary<Tuple<string, string>, PrivateChat> privateChats = new Dictionary<Tuple<string, string>, PrivateChat>();
-
+        private static ReaderWriterLock lck = new ReaderWriterLock();
         /**
          * If a PrivateChat object exists between two users, returns it, otherwise, 
          * creates it from the database and adds it to the dictionary and returns it
@@ -24,13 +25,20 @@ namespace MPAS.Logic
             }
 
             Tuple<string, string> queryTuple = new Tuple<string, string>(s1, s2);
-
+            lck.AcquireReaderLock(20);
             if (privateChats.ContainsKey(queryTuple))
             {
+                lck.ReleaseReaderLock();
                 return privateChats[queryTuple];
             } else
             {
-                privateChats[queryTuple] = DatabaseUtilities.GetPrivateChat(stdNum1, stdNum2);
+                lck.ReleaseReaderLock();
+                lck.AcquireWriterLock(20);
+                if (!privateChats.ContainsKey(queryTuple))
+                {
+                    privateChats[queryTuple] = DatabaseUtilities.GetPrivateChat(stdNum1, stdNum2);
+                }
+                lck.ReleaseWriterLock();
                 return privateChats[queryTuple];
             }
         }

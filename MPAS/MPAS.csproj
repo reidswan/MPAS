@@ -180,6 +180,8 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\AddUser.aspx" />
     <Content Include="Admin\DeleteUser.aspx" />
+    <Content Include="Admin\GroupAssignment.aspx" />
+    <Content Include="Admin\GroupDisplay.aspx" />
     <Content Include="AnnouncementList.aspx" />
     <Content Include="AnnouncementView.aspx" />
     <Content Include="GroupChat.aspx" />
@@ -205,6 +207,7 @@
     <Content Include="MeetingList.aspx" />
     <Content Include="MeetingView.aspx" />
     <Content Include="MessageThread.aspx" />
+    <Content Include="NewMessage.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -374,6 +377,20 @@
     <Compile Include="Admin\DeleteUser.aspx.designer.cs">
       <DependentUpon>DeleteUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\GroupAssignment.aspx.cs">
+      <DependentUpon>GroupAssignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GroupAssignment.aspx.designer.cs">
+      <DependentUpon>GroupAssignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GroupDisplay.aspx.cs">
+      <DependentUpon>GroupDisplay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GroupDisplay.aspx.designer.cs">
+      <DependentUpon>GroupDisplay.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AnnouncementList.aspx.cs">
       <DependentUpon>AnnouncementList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -440,9 +457,11 @@
     <Compile Include="Logic\ChatroomManager.cs" />
     <Compile Include="Logic\DatabaseUtilities.cs" />
     <Compile Include="Logic\EmailUtilities.cs" />
+    <Compile Include="Logic\Scheduler.cs" />
     <Compile Include="Logic\MentorGroupManager.cs" />
     <Compile Include="Logic\PrivateChatManager.cs" />
     <Compile Include="Logic\RoleActions.cs" />
+    <Compile Include="Logic\SearchUtility.cs" />
     <Compile Include="MakeAnnouncement.aspx.cs">
       <DependentUpon>MakeAnnouncement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -498,6 +517,13 @@
     <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="NewMessage.aspx.cs">
+      <DependentUpon>NewMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewMessage.aspx.designer.cs">
+      <DependentUpon>NewMessage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
