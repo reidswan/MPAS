@@ -61,6 +61,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -162,7 +163,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
@@ -184,8 +184,77 @@
     <Content Include="Admin\GroupDisplay.aspx" />
     <Content Include="AnnouncementList.aspx" />
     <Content Include="AnnouncementView.aspx" />
+    <Content Include="App_Data\aspnet-MPAS-20160810055049.mdf" />
+    <Content Include="App_Data\aspnet-MPAS-20160810055049_log.ldf">
+      <DependentUpon>aspnet-MPAS-20160810055049.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\LXXYOU005.jpg" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\AspNet.ScriptManager.bootstrap.dll" />
+    <Content Include="bin\AspNet.ScriptManager.jQuery.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.dll" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Microsoft.Owin.xml" />
+    <Content Include="bin\Microsoft.ScriptManager.MSAjax.dll" />
+    <Content Include="bin\Microsoft.ScriptManager.WebForms.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\MPAS.dll" />
+    <Content Include="bin\MPAS.pdb" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Providers.dll" />
+    <Content Include="bin\System.Web.Providers.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Feedback.aspx" />
+    <Content Include="font-awesome.css" />
     <Content Include="GroupChat.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-or.css" />
     <Content Include="Content\bootstrap-or.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -198,16 +267,36 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <Content Include="Admin\Web.config" />
+    <Content Include="bin\MPAS.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="hover.css" />
+    <Content Include="Images\01360406.jpg" />
+    <Content Include="Images\ABCXXX001.jpg" />
+    <Content Include="Images\ABCXXX002.jpg" />
+    <Content Include="Images\LXXYOU005.jpg" />
+    <Content Include="Images\Scale.png" />
+    <Content Include="MakeFeedback.aspx" />
+    <Content Include="MeetingReport.aspx" />
+    <Content Include="MentorViewGroup.aspx" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\MPAS.csprojResolveAssemblyReference.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\newLogo.png" />
     <Content Include="Images\uctgreenmile.jpg" />
     <Content Include="Inbox.aspx" />
     <Content Include="MakeAnnouncement.aspx" />
     <Content Include="MakeMeeting.aspx" />
+    <Content Include="MeetingFeedback.aspx" />
     <Content Include="MeetingList.aspx" />
     <Content Include="MeetingView.aspx" />
     <Content Include="MessageThread.aspx" />
     <Content Include="NewMessage.aspx" />
+    <Content Include="obj\Debug\MPAS.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MPAS.dll" />
+    <Content Include="obj\Debug\MPAS.pdb" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -243,6 +332,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="StyleSheet.css" />
+    <Content Include="ViewFeedback.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -406,29 +497,22 @@
       <DependentUpon>AnnouncementView.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Feedback.aspx.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback.aspx.designer.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GroupChat.aspx.cs">
       <DependentUpon>GroupChat.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GroupChat.aspx.designer.cs">
       <DependentUpon>GroupChat.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -457,6 +541,12 @@
     <Compile Include="Logic\ChatroomManager.cs" />
     <Compile Include="Logic\DatabaseUtilities.cs" />
     <Compile Include="Logic\EmailUtilities.cs" />
+    <Compile Include="Logic\GraphLogicLayer.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logic\GraphLogicLayer.designer.cs">
+      <DependentUpon>GraphLogicLayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Scheduler.cs" />
     <Compile Include="Logic\MentorGroupManager.cs" />
     <Compile Include="Logic\PrivateChatManager.cs" />
@@ -469,12 +559,26 @@
     <Compile Include="MakeAnnouncement.aspx.designer.cs">
       <DependentUpon>MakeAnnouncement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MakeFeedback.aspx.cs">
+      <DependentUpon>MakeFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MakeFeedback.aspx.designer.cs">
+      <DependentUpon>MakeFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MakeMeeting.aspx.cs">
       <DependentUpon>MakeMeeting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MakeMeeting.aspx.designer.cs">
       <DependentUpon>MakeMeeting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingFeedback.aspx.cs">
+      <DependentUpon>MeetingFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MeetingFeedback.aspx.designer.cs">
+      <DependentUpon>MeetingFeedback.aspx</DependentUpon>
     </Compile>
     <Compile Include="MeetingList.aspx.cs">
       <DependentUpon>MeetingList.aspx</DependentUpon>
@@ -483,12 +587,26 @@
     <Compile Include="MeetingList.aspx.designer.cs">
       <DependentUpon>MeetingList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MeetingReport.aspx.cs">
+      <DependentUpon>MeetingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MeetingReport.aspx.designer.cs">
+      <DependentUpon>MeetingReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MeetingView.aspx.cs">
       <DependentUpon>MeetingView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MeetingView.aspx.designer.cs">
       <DependentUpon>MeetingView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MentorViewGroup.aspx.cs">
+      <DependentUpon>MentorViewGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MentorViewGroup.aspx.designer.cs">
+      <DependentUpon>MentorViewGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="MessageThread.aspx.cs">
       <DependentUpon>MessageThread.aspx</DependentUpon>
@@ -501,8 +619,8 @@
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Chatroom.cs" />
-    <Compile Include="Models\Feedback.cs" />
-    <Compile Include="Models\FeedbackQuestions.cs" />
+    <Compile Include="Models\FeedbackComment.cs" />
+    <Compile Include="Models\FeedbackItem.cs" />
     <Compile Include="Models\GroupActivity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IMessageReceiver.cs" />
@@ -524,6 +642,9 @@
     <Compile Include="NewMessage.aspx.designer.cs">
       <DependentUpon>NewMessage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -540,6 +661,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewFeedback.aspx.cs">
+      <DependentUpon>ViewFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewFeedback.aspx.designer.cs">
+      <DependentUpon>ViewFeedback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -549,7 +677,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

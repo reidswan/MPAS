@@ -60,13 +60,15 @@ namespace MPAS.Admin
         {
             args.IsValid = (Regex.IsMatch(args.Value, @"^[a-zA-Z]{6,6}[0-9]{3,3}$") // student number
                 || Regex.IsMatch(args.Value, @"^[0-9]{8,8}$") // staff number
+                && !Regex.IsMatch(args.Value, @"<[^>]+>") // not html
                 );
         }
 
         protected void NameValidate(object source, ServerValidateEventArgs args)
         {
             // non-numeric name of length at least 1
-            args.IsValid = (Regex.IsMatch(args.Value, @"^[^(1-9)]+$"));
+            args.IsValid = (Regex.IsMatch(args.Value, @"^[^(1-9)]+$") //alphabetic
+                            && !Regex.IsMatch(args.Value, @"<[^>]+>")); //not html
         }
     }
 }

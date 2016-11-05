@@ -4,6 +4,7 @@
 
 <html lang="en">
 <head runat="server">
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - MPAS</title>
@@ -13,7 +14,11 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+	<link rel="stylesheet" type="text/css" href="StyleSheet.css" />
+    <link href="hover.css" rel="stylesheet" media="all">
+    <link href="font-awesome.css" rel="stylesheet" media="all">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+ 
 </head>
 <body>
     <form runat="server">
@@ -73,12 +78,17 @@
                              <ul class="dropdown-menu">
                                 <li><a runat="server" href="~/Admin/AddUser">Add User</a></li>
                                 <li><a runat="server" href="~/Admin/DeleteUser">Delete User</a></li>
+                                 <li><a runat="server" href="~/Admin/GroupAssignment">Assign to Groups</a></li>
                               </ul> 
                         </li>
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" visible="false" id="announcementTab" href="~/AnnouncementList">Announcements</a></li>
                         <li><a runat="server" visible="false" id="meetingTab" href="~/MeetingList">Meetings</a></li>
+                        <li><a runat="server" visible="false" id="meetingReportTab" href="~/MeetingReport">Meeting Report</a></li>
                         <li><a runat="server" visible="false" id="groupChatTab" href="~/GroupChat">Chatroom</a></li>
+						<li><a runat="server" visible="false" id="feedbackTab" href="~/Feedback">Feedback</a></li>
+						<li><a runat="server" visible="false" id="mentorGroup" href="~/MentorViewGroup">Mentor Group</a></li>
+                        <li><a runat="server" visible="false" id="inboxTab" href="~/Inbox.aspx">Inbox</a></li>
                    </ul>
                     
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

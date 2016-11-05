@@ -13,7 +13,7 @@ namespace MPAS.Logic
         private static ReaderWriterLock lck = new ReaderWriterLock();
         public static Chatroom GetChatroom(int groupNumber)
         {
-            lck.AcquireReaderLock(20);
+            lck.AcquireReaderLock(50);
             if (rooms.ContainsKey(groupNumber))
             {
                 lck.ReleaseReaderLock();
@@ -22,7 +22,7 @@ namespace MPAS.Logic
             else
             {
                 lck.ReleaseReaderLock();
-                lck.AcquireWriterLock(20);
+                lck.AcquireWriterLock(50);
                 Chatroom cr;
                 // this is in case somehow another object had the writer lock after this reader lock was released
                 // and added the chatroom object 

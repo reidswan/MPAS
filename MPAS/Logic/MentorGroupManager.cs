@@ -14,6 +14,7 @@ namespace MPAS.Logic
 
         public static MentorGroup GetGroup(int groupNumber)
         {
+            //if (groupNumber == 0) return MentorGroup.GENERAL;
             if (groups.ContainsKey(groupNumber))
             {
                 return groups[groupNumber];
@@ -21,8 +22,8 @@ namespace MPAS.Logic
             {
                 MentorGroup g = DatabaseUtilities.GetGroup(groupNumber);
                 if (g != null)
-                {
-                    groups.Add(groupNumber, g);
+                { 
+                    groups[groupNumber] = g;
                 }
                 return g;
             }

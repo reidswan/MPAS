@@ -40,8 +40,57 @@ namespace MPAS.Admin
 
             foreach(User u in users)
             {
-                if (groups.ContainsKey(u.GroupNumber))
+                if (!groups.ContainsKey(u.GroupNumber))
                 {
+                    groups[u.GroupNumber] = new MentorGroup();
+                }
+                if (u is Mentor)
+                {
+                    groups[u.GroupNumber].Mentor = (Mentor)u;
+                } else if (u is Mentee)
+                {
+                    groups[u.GroupNumber].AddMentee((Mentee)u);
+                }
+            }
+
+            int maxGroup = 0;
+            foreach(int ind in groups.Keys)
+            {
+                if (ind > maxGroup) maxGroup = ind;
+            }
+
+            for(int i = 0; i <= maxGroup; i++)
+            {
+                if (!groups.ContainsKey(i) || groups[i] == null) continue;
+                TableRow tr = new TableRow();
+                TableCell groupNum = new TableCell(), name = new TableCell(), stdNum = new TableCell();
+                
+                if (groups[i].Mentor != null)
+                {
+                    groupNum.Text = $"<h5>{i}</h5>";
+                    name.Text = $"<h5><b>{groups[i].Mentor.FirstName} {groups[i].Mentor.Surname}</b></h5>";
+                    stdNum.Text = $"<h5>{groups[i].Mentor.StudentNumber}</h5>";
+                    tr.Controls.Add(groupNum);
+                    tr.Controls.Add(name);
+                    tr.Controls.Add(stdNum);
+                    GroupsTable.Controls.Add(tr);
+                }
+
+                foreach (Mentee m in groups[i].Mentees)
+                {
+                    tr = new TableRow();
+                    groupNum = new TableCell();
+                    name = new TableCell();
+                    stdNum = new TableCell();
+
+                    groupNum.Text = $"<h5>{i}</h5>";
+                    name.Text = $"<h5>{m.FirstName} {m.Surname}</h5>";
+                    stdNum.Text = $"<h5>{m.StudentNumber}</h5>";
+
+                    tr.Controls.Add(groupNum);
+                    tr.Controls.Add(name);
+                    tr.Controls.Add(stdNum);
+                    GroupsTable.Controls.Add(tr);
 
                 }
             }

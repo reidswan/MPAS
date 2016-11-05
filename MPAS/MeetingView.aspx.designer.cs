@@ -22,6 +22,15 @@ namespace MPAS {
         protected global::System.Web.UI.WebControls.Label MeetingTitle_Label;
         
         /// <summary>
+        /// Feedback_Button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Feedback_Button;
+        
+        /// <summary>
         /// MeetingGroup_Label control.
         /// </summary>
         /// <remarks>

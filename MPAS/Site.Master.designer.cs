@@ -49,6 +49,15 @@ namespace MPAS {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor meetingTab;
         
         /// <summary>
+        /// meetingReportTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor meetingReportTab;
+        
+        /// <summary>
         /// groupChatTab control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,33 @@ namespace MPAS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor groupChatTab;
+        
+        /// <summary>
+        /// feedbackTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor feedbackTab;
+        
+        /// <summary>
+        /// mentorGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor mentorGroup;
+        
+        /// <summary>
+        /// inboxTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor inboxTab;
         
         /// <summary>
         /// MainContent control.

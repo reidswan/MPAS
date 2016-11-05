@@ -16,7 +16,7 @@ namespace MPAS
         protected void Page_Load(object sender, EventArgs e)
         {
             // send the user to the login page if they are not logged in
-            if((System.Web.HttpContext.Current.User == null) ||
+            if ((System.Web.HttpContext.Current.User == null) ||
                 !System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 Response.Redirect("~/Account/Login");
@@ -31,52 +31,61 @@ namespace MPAS
                 currentUser = DatabaseUtilities.GetUser(this.User.Identity.Name);
             }
 
-            // populate the announcements preview on the homepage
+            // populate up to two of the latest announcements preview on the homepage
             List<Announcement> announcements = DatabaseUtilities.GetAnnouncements(currentUser.GroupNumber);
-            if (announcements.Count >= 1)
+            for (int i = 0; i < 2 && i < announcements.Count; i++) 
             {
-                AnnouncementTitle1_Label.Text = "<a href='AnnouncementView?announcementID=" + announcements[0].ID + "'>" + 
-                    announcements[0].Title + "</a>";
-                AnnouncementDate1_Label.Text = announcements[0].CreationDate.ToShortDateString();
-                if (announcements.Count >= 2)
-                {
-                    AnnouncementTitle2_Label.Text = "<a href='AnnouncementView?announcementID=" + announcements[1].ID + "'>" +
-                        announcements[1].Title + "</a>";
-                    AnnouncementDate2_Label.Text = announcements[1].CreationDate.ToShortDateString();
-                }
+                // fill the table with the announcement's details
+                TableRow announcementRow = new TableRow();
+                TableCell announcementTitleCell = new TableCell();
+                TableCell announcementDateCell = new TableCell();
+                announcementTitleCell.Text = "<a href='AnnouncementView?announcementID=" + announcements[i].ID + "'>" + 
+                    announcements[i].Title + "</a>";
+                announcementDateCell.Text = announcements[i].CreationDate.ToShortDateString();
+                announcementRow.Controls.Add(announcementTitleCell);
+                announcementRow.Controls.Add(announcementDateCell);
+                AnnouncementTable.Controls.Add(announcementRow);
             }
 
             // populate the meetings preview on the homepage
             List<Meeting> meetings = DatabaseUtilities.GetMeetingsForGroup(currentUser.GroupNumber);
-            if (meetings.Count >= 1)
+            for(int i = 0; i < 2 && i < meetings.Count; i++)
             {
-                MeetingLocation1_Label.Text = "<a href='MeetingView?meetingID=" + meetings[0].ID + "'>" +
-                    meetings[0].Location + "</a>";
-                MeetingDate1_Label.Text = meetings[0].StartTime.ToShortDateString();
-                if (meetings.Count >= 2)
-                {
-                    MeetingLocation2_Label.Text = "<a href='MeetingView?meetingID=" + meetings[1].ID + "'>" +
-                        meetings[1].Location + "</a>";
-                    MeetingDate2_Label.Text = meetings[1].StartTime.ToShortDateString();
-                }
-            }
+                // fill the table with the meeting's details
+                TableRow meetingRow = new TableRow();
+                TableCell meetingLocationCell = new TableCell();
+                TableCell meetingDateCell = new TableCell();
+                meetingLocationCell.Text = "<a href='MeetingView?meetingID=" + meetings[i].ID + "'>" +
+                    meetings[i].Location + "</a>";
+                meetingDateCell.Text = meetings[i].StartTime.ToShortDateString();
 
+                // add to table
+                meetingRow.Controls.Add(meetingLocationCell);
+                meetingRow.Controls.Add(meetingDateCell);
+                MeetingsTable.Controls.Add(meetingRow);
+            }
+            
+            // get the latest messages from the chatroom
             Chatroom cr = ChatroomManager.GetChatroom(currentUser.GroupNumber);
-            if (cr.Messages.Count >= 1)
+            for(int i = 0; i < 2 && i < cr.Messages.Count; i++)
             {
-                ChatMessage m1 = cr.Messages[cr.Messages.Count - 1] as ChatMessage;
-                string content1 = m1.MessageContent;
-                if (content1.Length >= CHARCOUNT) content1 = content1.Substring(0, CHARCOUNT-3) + "...";
-                MessageContent1.Text = content1;
-                MessageSender1.Text = m1.Source.FirstName + m1.Source.Surname;
-                if (cr.Messages.Count >= 2)
-                {
-                    ChatMessage m2 = cr.Messages[cr.Messages.Count - 2] as ChatMessage;
-                    string content2 = m2.MessageContent;
-                    if (content2.Length >= CHARCOUNT) content2 = content2.Substring(0, CHARCOUNT-3) + "...";
-                    MessageContent2.Text = content2;
-                    MessageSender2.Text = m2.Source.FirstName + m2.Source.Surname;
-                }
+                ChatMessage m = cr.Messages[cr.Messages.Count - i - 1] as ChatMessage;
+                string content = m.MessageContent;
+                // truncate the message for spacing reasons
+                if (content.Length >= CHARCOUNT) content = content.Substring(0, CHARCOUNT-3) + "...";
+
+                // table row and cells
+                TableRow messageRow = new TableRow();
+                TableCell senderCell = new TableCell();
+                TableCell contentCell = new TableCell();
+
+                contentCell.Text = content;
+                senderCell.Text = m.Source.FirstName + " " + m.Source.Surname;
+
+                // add to table
+                messageRow.Controls.Add(senderCell);
+                messageRow.Controls.Add(contentCell);
+                MessageTable.Controls.Add(messageRow);
             }
         }
     }

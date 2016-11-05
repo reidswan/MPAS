@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="View Announcement" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AnnouncementView.aspx.cs" Inherits="MPAS.AnnouncementView" %>
 <asp:Content ID="Content" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Announcement</h3>
+    <h1>Announcement</h1>
     <hr />
     <div class="row">
         <div class="col-md-8 col-xs-12">
@@ -8,12 +8,16 @@
                 <div class="col-md-12 col-xs-12">
                     <h3><asp:Label runat="server" ID="AnnouncementTitle_Label">Lorem Ipsum</asp:Label></h3>
                 </div>
-                <div class="col-md-6 col-xs-6">
-                    <h5><asp:Label runat="server" ID="AnnouncementGroup_Label">General Announcement</asp:Label></h5>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <h4><asp:Label runat="server" ID="AnnouncementGroup_Label">General Announcement</asp:Label></h4>
+                   <h4><asp:Label runat="server" ID="AnnouncementDate_Label">10:10, 10/10/2010</asp:Label></h4>
                 </div>
-                <div class="col-md-6 col-xs-6">
-                    <h5><asp:Label runat="server" ID="AnnouncementDate_Label">10:10, 10/10/2010</asp:Label></h5>
-                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 col-xs-12"><b>Message:</b></div>
             </div>
             <div class="row ">
                 <div class="col-md-12 col-xs-12">

@@ -17,24 +17,38 @@ namespace MPAS.Models
         public Meeting(MentorGroup g, string title, string location, string agenda, DateTime startTime, DateTime endTime)
         {
             this.ID = ++nextId;
-            foreach(Mentee m in g.Mentees)
+            if (g != null && g.Mentees != null)
             {
-                attendance.Add(m.StudentNumber, AttendanceStatus.NO_DATA);
+                foreach (Mentee m in g.Mentees)
+                {
+                    attendance.Add(m.StudentNumber, AttendanceStatus.NO_DATA);
+                }
             }
             this.startTime = startTime;
             this.endTime = endTime;
+            this.Title = title;
+            this.Location = location;
+            this.Agenda = agenda;
+            this.Group = g;
         }
 
         public Meeting(int ID, MentorGroup g, string title, string location, string agenda, DateTime startTime, DateTime endTime)
         {
             this.ID = ID;
-            foreach (Mentee m in g.Mentees)
+            attendance = new Dictionary<string, AttendanceStatus>();
+            if ( g != null && g.Mentees != null)
             {
-                attendance.Add(m.StudentNumber, AttendanceStatus.NO_DATA);
+                foreach (Mentee m in g.Mentees)
+                {
+                    attendance[m.StudentNumber] = AttendanceStatus.NO_DATA;
+                }
             }
-
+            this.Title = title;
+            this.Location = location;
             this.startTime = startTime;
             this.endTime = endTime;
+            this.Agenda = agenda;
+            this.Group = g;
         }
 
         public void RecordAttendance(string stdNum, AttendanceStatus t)

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Group Assignment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GroupAssignment.aspx.cs" Inherits="MPAS.Admin.GroupAssignment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h3> Add User </h3>
+    <h1> Assign to Groups </h1>
     <hr />
     <div class="row">
         <div class="col-md-8 col-xs-12">
@@ -16,14 +16,16 @@
     </div>
     <div class="row">
         <div class="col-md-8 col-xs-12">
-            <asp:UpdatePanel runat="server" ID="AssignmentPanel" UpdateMode="Conditional">
-                <Triggers>
+            <asp:UpdatePanel runat="server" ID="AssignmentPanel">
+                <%--<Triggers>
                     <asp:AsyncPostBackTrigger ControlID="AssignButton" />
-                </Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="GenerateButton" />
+                </Triggers> --%>
                 <ContentTemplate>
                     <asp:Button CssClass="btn btn-default" runat="server" ID="AssignButton" OnClick="AssignButton_Click" Text="Assign" />
+                    <asp:Button CssClass="btn btn-default" runat="server" ID="GenerateButton" OnClick="GenerateButton_Click" Text="Generate Random Users" />
                     <br />
-                    <asp:Label runat="server" ID="AssignmentLabel" Visible="false">Assigning users to groups. Page will redirect on completion</asp:Label>
+                    <asp:Label runat="server" ID="AssignmentLabel"></asp:Label>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

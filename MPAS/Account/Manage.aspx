@@ -2,9 +2,13 @@
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
+
+    
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-
+    <meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
     <div>
         <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">
             <p class="text-success"><%: SuccessMessage %></p>
@@ -16,65 +20,144 @@
             <div class="form-horizontal">
                 <h4>Change your account settings</h4>
                 <hr />
-                <dl class="dl-horizontal">
-                    <dt>Password:</dt>
-                    <dd>
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="CreatePassword" runat="server" />
-                    </dd>
-                    <dt>External Logins:</dt>
-                    <dd><%: LoginsCount %>
-                        <asp:HyperLink NavigateUrl="/Account/ManageLogins" Text="[Manage]" runat="server" />
 
-                    </dd>
-                    <%--
-                        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-                        See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                        Uncomment the following blocks after you have set up two-factor authentication
-                    --%>
-                    <%--
-                    <dt>Phone Number:</dt>
-                    <% if (HasPhoneNumber)
-                       { %>
-                    <dd>
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Add]" />
-                    </dd>
-                    <% }
-                       else
-                       { %>
-                    <dd>
-                        <asp:Label Text="" ID="PhoneNumber" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/AddPhoneNumber" runat="server" Text="[Change]" /> &nbsp;|&nbsp;
-                        <asp:LinkButton Text="[Remove]" OnClick="RemovePhone_Click" runat="server" />
-                    </dd>
-                    <% } %>
-                    --%>
+                <div class="form-group">
+                <div class="col-md-8 col-xs-8" >
+                   <div runat="server" class="container-popup" ID ="photoOverlay">
+                        <div class="popup">
+                            <h2>Update Profile Picture</h2>
+                            <div runat="server" top="15%">
+                            
+                                        <%-- Left Button --%>
+                                        <asp:FileUpload id="FileUploadControl" runat="server"/>
+                                        <asp:Button runat="server" id="UploadButton" text="Upload" onclick="UploadButton_Click" />
+                                        <br /><br />
+                                        <asp:Label runat="server" id="Overlay_Status_label" text="Upload status: " Width="90%"/>
+                                       <%-- Left Button --%>
+                                    
+                            </div>
+                            <div runat="server" class ="close-button-container">
+                                <asp:LinkButton runat="server" Class ="hvr-icon-fade close-button " onClick="CloseOverlayForm_Click"></asp:LinkButton>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4" style="left:50%;">
+                                
+                                <asp:Label runat="server" ID="PicturePath_Label"></asp:Label>
+                            <div runat="server" class ="caption" id="container_For_Blue">
+					            <div class="blur"></div>
+					                <div class="caption-text" style ="top:55px">
+					        	        <h1 >Update Photo</h1>
+                                        <asp:LinkButton runat="server" ID ="LinkButton1" OnClick="DisplayOverlay_Click">Click Here</asp:LinkButton>
+					                 </div>
+				            </div>
+                    </div>
+                </div>
+                
+                 </div>
 
-                    <dt>Two-Factor Authentication:</dt>
-                    <dd>
-                        <p>
-                            There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                            for details on setting up this ASP.NET application to support two-factor authentication.
-                        </p>
-                        <% if (TwoFactorEnabled)
-                          { %> 
-                        <%--
-                        Enabled
-                        <asp:LinkButton Text="[Disable]" runat="server" CommandArgument="false" OnClick="TwoFactorDisable_Click" />
-                        --%>
-                        <% }
-                          else
-                          { %> 
-                        <%--
-                        Disabled
-                        <asp:LinkButton Text="[Enable]" CommandArgument="true" OnClick="TwoFactorEnable_Click" runat="server" />
-                        --%>
-                        <% } %>
-                    </dd>
-                </dl>
+
+                <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" ID="FirstName_Label" >First Name:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <asp:TextBox runat="server" ID="FirstName_TextBox"  CssClass="form-control"></asp:TextBox>
+                    <asp:CustomValidator runat="server" ID="UpdateFirstNameValidator" ControlToValidate="FirstName_TextBox" OnServerValidate="NameValidate" CssClass="text-danger" ErrorMessage="First name must be alphabetic, non-empty and non-HTML"></asp:CustomValidator>
+                </div>
+                
+                 </div>
+        
+
+                <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" ID="Surname_Label">Surname:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <asp:TextBox runat="server" ID="Surname_TextBox"  CssClass="form-control"></asp:TextBox>
+                    <asp:CustomValidator runat="server" ID="UpdateSurnameValidator" ControlToValidate="Surname_TextBox" OnServerValidate="NameValidate" CssClass="text-danger" ErrorMessage="Surname must be alphabetic, non-empty and non-HTML"></asp:CustomValidator>
+                </div>
+               
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" ID="StudentNumber_Label">Student Number:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <asp:TextBox runat="server" ID="StudentNumber_TextBox"  style="text-transform:uppercase" CssClass="form-control"></asp:TextBox>
+                    
+                </div>
+            
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" ID="DOB_Label">Date Of Birth:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <div>
+                        <asp:DropDownList ID="DropDownList1" runat="server">
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="DropDownList2" runat="server">
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="DropDownList3" runat="server">
+                        </asp:DropDownList>
+                       
+                    </div>
+                </div>
+            
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" Id="Mentor_Label">Mentor: </asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <asp:CheckBox runat="server"  Checked="false" Id="MentorCheckBox" CssClass="checkbox"/>
+                </div>
+            </div>
+
+                <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" ID="GroupNumber_label" >Group Number:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                    <asp:TextBox runat="server" ID="GroupNumber_TextBox"  CssClass="form-control"></asp:TextBox>
+                </div>
+                
+                 </div>
+
+                <%-- Start Changing Password--- --%>
+                <div class="form-group">
+                <div class="col-md-4 col-xs-4">
+                    <asp:Label runat="server" ID="Password_Label" >Password:</asp:Label>
+                </div>
+                <div class="col-md-8 col-xs-8">
+                     <asp:HyperLink NavigateUrl="/Account/ManagePassword"  Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
+                </div>
+                
+                 </div>
+
+                <%-- End Changing Password--- --%>
+
+                 <div class="form-group">
+                <div class="col-md-12 col-xs-12" style="margin-top:5%">
+                    <asp:Button runat="server" ID="SubmitButton" Class="testingClass" Text="Submit" OnClick="SubmitButton_Clicked" />
+                </div>
+                <div class="col-md-12 col-xs-12">
+                    <asp:Label id="Main_Status_Label" runat="server" Visible="false"></asp:Label>
+                </div>
+            </div>
+
+
+                
             </div>
         </div>
     </div>
 
 </asp:Content>
+
+

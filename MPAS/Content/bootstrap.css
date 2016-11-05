@@ -127,6 +127,7 @@ textarea {
 }
 button {
   overflow: visible;
+
 }
 button,
 select {
@@ -1644,7 +1645,10 @@ pre code {
   width: 58.33333333%;
 }
 .col-xs-6 {
-  width: 50%;
+  width: 17%;
+    top: -743px;
+    left: -998px;
+    height: 78px;
 }
 .col-xs-5 {
   width: 41.66666667%;

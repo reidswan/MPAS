@@ -7,11 +7,14 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using MPAS.Models;
+using MPAS.Logic;
 
 namespace MPAS
 {
     public partial class SiteMaster : MasterPage
     {
+		User currentUser;
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -69,6 +72,7 @@ namespace MPAS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+			currentUser = null;
             if (HttpContext.Current.User.IsInRole("Administrator"))
             {
                 adminLink.Visible = true;
@@ -76,8 +80,21 @@ namespace MPAS
             if (HttpContext.Current.User != null && HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 announcementTab.Visible = true;
-                meetingTab.Visible = true;
+                if (HttpContext.Current.User.IsInRole("Administrator"))
+                {
+                    meetingReportTab.Visible = true;
+                } else
+                {
+                    meetingTab.Visible = true;
+                }
                 groupChatTab.Visible = true;
+				currentUser = DatabaseUtilities.GetUser(HttpContext.Current.User.Identity.Name);
+                mentorGroup.Visible = true;
+                inboxTab.Visible = true;
+                if (HttpContext.Current.User.IsInRole("Administrator") || currentUser.Feedback == 0)
+                {
+                    feedbackTab.Visible = true;
+                }
             }
         }
 

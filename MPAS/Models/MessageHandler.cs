@@ -48,7 +48,10 @@ namespace MPAS.Models
          */
         public void RegisterReceiver(IMessageReceiver rcvr)
         {
-            receivers.Add(rcvr);
+            lock (receivers)
+            {
+                receivers.Add(rcvr);
+            }
         }
     }
 }

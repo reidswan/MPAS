@@ -114,8 +114,11 @@ namespace MPAS.Models
          */ 
         public void AddMentee(Mentee m)
         {
-            m.Group = this;
-            Mentees.Add(m);
+            if (!Mentees.Contains(m))
+            {
+                System.Diagnostics.Debug.WriteLine("Adding " + m.StudentNumber);
+                Mentees.Add(m);
+            }
         }
 
         /*

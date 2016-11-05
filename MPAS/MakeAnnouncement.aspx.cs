@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using MPAS.Models;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace MPAS
 {
@@ -32,6 +33,10 @@ namespace MPAS
             } else if (currentUser is Mentor)
             {
                 MentorOptions.Visible = true;
+            } 
+            else if (currentUser is Mentee)
+            {
+                Response.Redirect("~/Error/AuthError.aspx");
             }
         }
         User GetUser(string studentNumber)
@@ -144,6 +149,11 @@ namespace MPAS
 
             // redirect to announcement list page
             Response.Redirect("~/AnnouncementView.aspx?announcementID=" + created.ID);
+        }
+
+        protected void Validate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = (Regex.IsMatch(args.Value, @"^[^(1-9)]+$") && !Regex.IsMatch(args.Value, @"<[^>]+>"));
         }
     }
 }

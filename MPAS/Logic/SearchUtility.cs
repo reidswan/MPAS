@@ -18,13 +18,13 @@ namespace MPAS.Logic
         public static List<string> Search(string query)
         {
             List<string> res = new List<string>();
-            var queryParts = query.Trim().Split(' ');
+            var queryParts = query.Trim().ToUpper().Split(' ');
             foreach(string user in userStrings)
             {
                 /*inner:*/
                 foreach (string q in queryParts) 
                 {
-                    if (user.Contains(q))
+                    if (user.ToUpper().Contains(q))
                     {
                         res.Add(user);
                         break /*inner*/ ;

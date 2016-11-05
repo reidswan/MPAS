@@ -11,7 +11,7 @@ namespace MPAS.Models
         public Mentee(string studentNumber)
         {
             base.StudentNumber = studentNumber;
-            ALL.Add(this);
+            //ALL.Add(this);
         }
 
     }

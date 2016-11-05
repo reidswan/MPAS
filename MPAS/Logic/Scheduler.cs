@@ -160,7 +160,10 @@ namespace MPAS.Logic
             {
                 for (int p = 0; p < 10; p++)
                 {
-                    mentorsAssigned[d, p].Add(assignedPeriods[d, p]);
+                    if (assignedPeriods[d, p] != null)
+                    {
+                        mentorsAssigned[d, p].Add(assignedPeriods[d, p]);
+                    }
                 }
             }
 
@@ -508,6 +511,56 @@ namespace MPAS.Logic
             }
 
             return valid;
+        }
+
+        /**
+         * After scheduling, this method can be called to assign the generated mentors and mentees to groups
+         * useful when multiple mentors are assigned to one period
+         * minMenteeCount : minimum number of mentees that can be assigned to a group if more than this number is available
+         */
+         public List<Tuple<Person, List<Person>>> AssignToGroups(int minMenteeCount)
+        {
+            List<Tuple<Person, List<Person>>> groups = new List<Tuple<Person, List<Person>>>();
+            minMenteeCount = minMenteeCount < 1 ? 1 : minMenteeCount; 
+            for(int day = 0; day < 5; day++)
+            {
+                for(int period = 0; period < 10; period++)
+                {
+                    if (MentorsByPeriod[day, period].Count == 0) continue;
+                    else if (MentorsByPeriod[day, period].Count == 1)
+                    {
+                        // there is only one mentor available so assign all mentees to that mentor
+                        groups.Add(new Tuple<Person, List<Person>>(MentorsByPeriod[day, period][0], MentorsByPeriod[day, period]));
+                    } else // more than one mentor in this period
+                    {
+                        int menteesPerGroup = Math.Max(minMenteeCount, MenteesByPeriod[day, period].Count / MentorsByPeriod[day, period].Count);
+                        int mentorsAssigned = 0;
+                        int menteesAssigned = 0;
+                        int menteesRemaining = MenteesByPeriod[day, period].Count;
+                        Tuple<Person, List<Person>> group = new Tuple<Person, List<Person>>(MentorsByPeriod[day, period][0], new List<Person>());
+                        mentorsAssigned++;
+
+                        foreach(Person mentee in MenteesByPeriod[day, period])
+                        {
+                            group.Item2.Add(mentee);
+                            menteesAssigned++;
+                            menteesRemaining--;
+                            if (menteesAssigned >= menteesPerGroup && menteesRemaining >= menteesPerGroup && mentorsAssigned+1 < MentorsByPeriod[day, period].Count)
+                            {
+                                groups.Add(group);
+                                group = new Tuple<Person, List<Person>>(MentorsByPeriod[day, period][mentorsAssigned++], new List<Person>());
+                            }
+                        }
+
+                        // check if the current group has any mentees then if it hasn't been added, add it 
+                        if (group.Item2.Count > 0 && !(groups[groups.Count - 1] as object == group as object))
+                        {
+                            groups.Add(group);
+                        }
+                    }
+                }
+            }
+            return groups;
         }
 
         public List<Person>[,] MentorsByPeriod

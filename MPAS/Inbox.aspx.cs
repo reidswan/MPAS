@@ -63,8 +63,15 @@ namespace MPAS
                     string formattingEndStr = (!pMsg.Read ? "</b>" : "") + "</h5>";
 
                     // populate the table cells
-                    fromCell.Text = $"{formattingStartStr}<a href='MessageThread.aspx?s={s.StudentNumber}'>" + 
-                        $"{s.FirstName} {s.Surname}</a>{formattingEndStr}";
+                    fromCell.Text = $"{formattingStartStr}";
+                    if (s.StudentNumber != "NULL") {
+                        fromCell.Text += $"<a href='MessageThread.aspx?s={s.StudentNumber}'>";
+                    }
+                    fromCell.Text += $"{s.FirstName} {s.Surname}";
+                    if (s.StudentNumber != "NULL") {
+                        fromCell.Text += "</a>";
+                    }
+                    fromCell.Text += $"{formattingEndStr}";
                     contentCell.Text = formattingStartStr + (pMsg.MessageContent.Length > 50 ? (pMsg.MessageContent.Substring(0, 46) + "...") : pMsg.MessageContent) + formattingEndStr;
                     dateCell.Text = formattingStartStr + pMsg.SendTime.ToShortTimeString() + ", " + pMsg.SendTime.ToShortDateString() + formattingEndStr;
 

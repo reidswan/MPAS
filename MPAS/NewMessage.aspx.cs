@@ -34,6 +34,14 @@ namespace MPAS
                 || Regex.IsMatch(args.Value, @"^[0-9]{8,8}$")); // staff number;
         }
 
+        protected void MsgValidate(object src, ServerValidateEventArgs args)
+        {
+            args.IsValid = (!Regex.IsMatch(args.Value, @"<[^>]+>"));
+        }
+
+        /*
+         * Triggers a search for users based on the content of the search text box, returning a clickable table of users to populate the destination textbox
+         */
         protected void Search_Button_Click(object sender, EventArgs e)
         {
             if (Search_TextBox.Text.Trim() == "") return;

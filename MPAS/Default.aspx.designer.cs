@@ -13,111 +13,30 @@ namespace MPAS {
     public partial class _Default {
         
         /// <summary>
-        /// AnnouncementTitle1_Label control.
+        /// AnnouncementTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AnnouncementTitle1_Label;
+        protected global::System.Web.UI.WebControls.Table AnnouncementTable;
         
         /// <summary>
-        /// AnnouncementDate1_Label control.
+        /// MeetingsTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AnnouncementDate1_Label;
+        protected global::System.Web.UI.WebControls.Table MeetingsTable;
         
         /// <summary>
-        /// AnnouncementTitle2_Label control.
+        /// MessageTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AnnouncementTitle2_Label;
-        
-        /// <summary>
-        /// AnnouncementDate2_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AnnouncementDate2_Label;
-        
-        /// <summary>
-        /// MeetingLocation1_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MeetingLocation1_Label;
-        
-        /// <summary>
-        /// MeetingDate1_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MeetingDate1_Label;
-        
-        /// <summary>
-        /// MeetingLocation2_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MeetingLocation2_Label;
-        
-        /// <summary>
-        /// MeetingDate2_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MeetingDate2_Label;
-        
-        /// <summary>
-        /// MessageContent1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageContent1;
-        
-        /// <summary>
-        /// MessageSender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageSender1;
-        
-        /// <summary>
-        /// MessageContent2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageContent2;
-        
-        /// <summary>
-        /// MessageSender2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MessageSender2;
+        protected global::System.Web.UI.WebControls.Table MessageTable;
     }
 }

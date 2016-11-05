@@ -2445,9 +2445,6 @@
   right: 0;
 }
 
-.hello{
-    color:red;
-}
 /* Underline From Center */
 .hvr-underline-from-center {
   display: inline-block;
@@ -3513,7 +3510,7 @@
   padding-right: 2.2em;
 }
 .hvr-icon-fade:before {
-  content: "\f00d";
+  content: "\f00c";
   position: absolute;
   right: 1em;
   padding: 0 1px;
@@ -3665,7 +3662,7 @@
   transition-duration: 0.3s;
 }
 .hvr-icon-grow:before {
-  content: "\f118";
+  content: "\f014";
   position: absolute;
   right: 1em;
   padding: 0 1px;

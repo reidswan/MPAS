@@ -32,6 +32,7 @@ namespace MPAS
             foreach (Meeting m in DatabaseUtilities.GetMeetingsForGroup(currentUser.GroupNumber))
             {
                 NoMeetings.Visible = false;
+                MeetingTable.Visible = true;
                 // only select those meetings in the future
                 if (m.StartTime > DateTime.Now)
                 {
@@ -58,6 +59,7 @@ namespace MPAS
                     row.Controls.Add(end);
 
                     MeetingTable.Controls.Add(row);
+                    System.Diagnostics.Debug.WriteLine("Added!");
                 }
             }
         }

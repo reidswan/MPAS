@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Message Thread" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MessageThread.aspx.cs" Inherits="MPAS.MessageThread" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h3><asp:Label runat="server" ID="Title_Label">Message Thread</asp:Label></h3>
+    <h1><asp:Label runat="server" ID="Title_Label">Message Thread</asp:Label></h1>
     <hr />
     <div class="row">
         <div class="col-md-2"></div>

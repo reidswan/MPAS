@@ -15,7 +15,9 @@ namespace MPAS.Models
         private int groupNumber; // redundant but temporary 
         private DateTime dateOfBirth;
         private Schedule schedule;
-
+		private Int32 feedback;
+		
+		
         [StringLength(20), Display(Name = "First Name")]
         public string FirstName {
             get { return firstname; }
@@ -118,6 +120,20 @@ namespace MPAS.Models
             }
         }
 
+		
+		public Int32 Feedback
+        {
+            get
+            {
+                return feedback;
+            }
+ 
+            set
+            {
+                feedback = value;
+            }
+        }
+		
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

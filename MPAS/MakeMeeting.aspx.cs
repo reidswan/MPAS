@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MPAS.Logic;
 using MPAS.Models;
+using System.Text.RegularExpressions;
 
 namespace MPAS
 {
@@ -40,7 +41,7 @@ namespace MPAS
             }
 
             // populate the group number dropdown with valid group numbers
-            for (int i = 1; i <= DatabaseUtilities.GetHighestGroupNumber(); i++)
+            for (int i = 0; i <= DatabaseUtilities.GetHighestGroupNumber(); i++)
             {
                 Groups_DropDown.Items.Add(""+i);
             }
@@ -82,13 +83,17 @@ namespace MPAS
                 // if the user is not an admin, take their group number, 
                 // else get the group selected by the admin
                 int selectedGroup = currentUser.GroupNumber;
-                {
+                if (currentUser is Administrator) {
                     selectedGroup = Int32.Parse(Groups_DropDown.Items[Groups_DropDown.SelectedIndex].Text);
                 }
-
                 DatabaseUtilities.AddMeeting(Title_Textbox.Text, Location_Textbox.Text, Agenda_Textbox.Text,
                     startTime, endTime, selectedGroup, currentUser.StudentNumber);
+                Response.Redirect("MeetingList.aspx");
             }
+        }
+        protected void Validate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = (Regex.IsMatch(args.Value, @"^[^(1-9)]+$") && !Regex.IsMatch(args.Value, @"<[^>]+>"));
         }
     }
 }

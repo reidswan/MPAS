@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="row">
-            <div class="col-xs-8"><h3>Announcements</h3></div>
+            <div class="col-xs-8"><h1>Announcements</h1></div>
             <div class="col-xs-4">
                 <a runat="server" id="MakeAnnouncementButton" visible="false" class="btn btn-default" style="margin-top:5%" href="MakeAnnouncement">
                     Make Announcement
